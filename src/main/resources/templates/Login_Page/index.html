@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="~{fragments :: headDefault('Login Page')}"></head>
+  <body>
+<header th:replace="~{fragments :: header1}"></header>
+
+    <main>
+      <div class="Login_Conteiner">
+        <h1 class="Login_Text">Login</h1>
+                    
+        <div style="position: relative; width: 100%;">
+          <div style="position: absolute; top: 55%; transform: translateY(-50%); left: 4px;">
+            <img th:src='@{/images/User_Vector.svg}'>
+          </div>
+          <input
+            type="text"
+            class="Login_Inputs"
+            id="Username_Input"
+            placeholder="Username"
+          />
+        </div>
+
+        <div style="position: relative; width: 100%; margin-top: 24px;">
+          <div style="position: absolute; top: 50%; transform: translateY(-50%); left: 16px;">
+            <img th:src='@{/images/PadLock_Vector.svg}'>
+          </div>
+          <input
+            type="text"
+            class="Login_Inputs"
+            id="Password_Input"
+            placeholder="Password"
+          />
+        </div>
+
+
+        <a class="Login_Forgot_Password">Esqueceu a Senha?</a>
+        <button type="submit" id="Login_Button">Login</button>
+      </div>
+    </main>
+
+<footer th:replace="~{fragments :: footerDefault}"></footer>
+
+    <script th:src='@{/js/Login_Page/script.js}'></script>
+  </body>
+</html>

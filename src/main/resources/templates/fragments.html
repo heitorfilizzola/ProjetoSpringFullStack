@@ -1,0 +1,52 @@
+<header th:fragment="header1" class="Login_Header">
+  <p class="Notes_Header">Notas</p>
+</header>
+
+<head th:fragment="headDefault(titulo)">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" th:href="@{/css/Login_Page/style.css}" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+          href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+          rel="stylesheet"
+  />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kite+One&display=swap" rel="stylesheet">
+
+  <title th:text="${titulo}">Notas</title>
+</head>
+
+
+<footer th:fragment="footerDefault">
+  <div class="Main_Footer">
+
+    <div id="Left_Footer_Itens">
+      <h3>
+        Notes app
+      </h3>
+      <h4>
+        Rua Lorem Ipson
+      </h4>
+      <hr class="Footer_Line">
+    </div>
+
+    <div id="Right_Footer_Itens">
+      <h3>
+        Contato
+      </h3>
+      <h4>
+        (81) 123123
+      </h4>
+      <hr class="Footer_Line">
+    </div>
+
+  </div>
+
+  <p class="Copy">
+    Copyright @2024 All rights reserved
+  </p>
+
+</footer>
