@@ -9,19 +9,9 @@
 <main>
 
   <div class="Login_Conteiner">
-    <h1 class="Login_Text">Reg</h1>
+    <h1 class="Login_Text">Register</h1>
 
-    <div style="position: relative; width: 100%;">
-      <div style="position: absolute; top: 55%; transform: translateY(-50%); left: 4px;">
-        <img th:src='@{/images/User_Vector.svg}'>
-      </div>
-      <input
-              type="email"
-              class="Login_Inputs"
-              id="Register_Input"
-              placeholder="Email"
-      />
-    </div>
+
 
     <div style="position: relative; width: 100%;">
       <div style="position: absolute; top: 55%; transform: translateY(-50%); left: 4px;">
@@ -32,6 +22,18 @@
               class="Login_Inputs"
               id="Username_Input"
               placeholder="Username"
+      />
+    </div>
+
+    <div style="position: relative; width: 100%; margin-top:24px;">
+      <div style="position: absolute; top: 55%; transform: translateY(-50%); left: 16px;">
+        <img th:src='@{/images/Letter_Vector.svg}'>
+      </div>
+      <input
+              type="email"
+              class="Login_Inputs"
+              id="Email_Input"
+              placeholder="Email"
       />
     </div>
 
@@ -47,7 +49,7 @@
       />
     </div>
 
-    <button type="submit" id="Login_Button">Login</button>
+    <button type="submit" id="Login_Button">Register</button>
   </div>
 </main>
 

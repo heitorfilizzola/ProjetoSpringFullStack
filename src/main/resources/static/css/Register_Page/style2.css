@@ -2,7 +2,7 @@
     margin: 0;
     padding: 0;
 
-    /* outline: 1px solid red;*/ /* Apenas para debugging */
+    /* outline: 1px solid red; */  /*Apenas para debugging */
 
 
 }
@@ -67,9 +67,9 @@ main{
     padding-right: 24px;
     padding-bottom: 24px;
 
-    width: calc(100% - 16px);
+    width: calc(85% - 16px);
     height: 100%;
-    margin-top: 150px;
+    margin-top: 100px;
     max-width: 615px;
     max-height: 600px;
     min-height: 615px;
@@ -84,7 +84,7 @@ main{
 .Login_Text{
     /*text-align: top;*/
     padding-bottom: 5rem;
-    padding-top: 5rem;
+    padding-top: 4rem;
     font-family: "Roboto", sans-serif;
     font-weight: 700;
     font-style: normal;
@@ -165,7 +165,7 @@ footer{
 .Main_Footer{
     height: 100%;
     width: 100%;
-    margin-top: 150px;
+    margin-top: 100px;
     display: flex;;
     flex-wrap: wrap;
     justify-content: space-between;
