@@ -23,28 +23,28 @@ public class LoginController {
     @GetMapping("login")
     public ModelAndView showLogin() {
         ModelAndView modelAndView = new ModelAndView("Login_Page/index.html");
+        modelAndView.addObject("loginRequestDTO", new LoginRequestDTO());
         return modelAndView;
     }
 
     @PostMapping("login")
     public ModelAndView login(@ModelAttribute LoginRequestDTO request) {
+        ModelAndView mv = new ModelAndView("Login_Page/index.html");
         Optional<User> userOptional = userRepository.findByName(request.getUsername());
 
         if (userOptional.isPresent()) {
             User user = userOptional.get();
 
-            if(passwordEncoder.matches(request.getPassword(), user.getPassword())) {
+            if (passwordEncoder.matches(request.getPassword(), user.getPassword())) {
                 System.out.println("Login successful");
                 return new ModelAndView("redirect:/");
             } else {
-                //Para debug
-                System.out.println("Senha errada");
-                return new ModelAndView("redirect:/wrong");
+                mv.addObject("error", "Senha incorreta ou usuário não encontrado");
             }
-        }
-        //Para debug
-        return new ModelAndView("redirect:/notfound");
-
+        }else{
+                mv.addObject("error", "Senha incorreta ou usuário não encontrado");
+            }
+        return mv;
 
     }
 }

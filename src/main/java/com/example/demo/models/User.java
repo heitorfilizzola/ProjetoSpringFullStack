@@ -2,7 +2,6 @@ package com.example.demo.models;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
-import org.hibernate.validator.constraints.UniqueElements;
 
 @Entity
 @Table(name = "user")
@@ -10,12 +9,18 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
+
     @NotNull
     private String name;
-    @UniqueElements
+
+    @NotNull
+    @Column(unique = true)
     private String email;
+
     @NotNull
     private String password;
+
+    public User() {}
 
     public User(String id, String name, String email, String password) {
         this.id = id;
@@ -23,8 +28,6 @@ public class User {
         this.email = email;
         this.password = password;
     }
-
-    public User() {}
 
     public String getId() {
         return id;
