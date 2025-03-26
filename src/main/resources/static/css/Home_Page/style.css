@@ -1,0 +1,184 @@
+main{
+    justify-content: unset;
+    align-items: unset;
+}
+
+form{
+    all: unset;
+}
+
+
+.container{
+    width: 100%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    font-family: "Roboto", sans-serif;
+}
+
+
+/*todo o nav de cima*/
+
+#nav_elements{
+    display: flex;
+
+    flex-flow: row wrap;
+
+    justify-content: space-between;
+
+    gap: 50px;
+}
+
+#nav_left_elements{
+    display: flex;
+    float: left;
+
+    width: 100%;
+    height: 100%;
+
+    max-width: 350px;
+    max-height: 50px;
+
+    margin: 24px 40px 24px 50px;
+}
+
+#nav_right_elements{
+    display: flex;
+    float: right;
+
+    flex-direction: row;
+    flex-wrap: wrap;
+    text-align: center;
+    align-items: baseline;
+    align-content: center;
+    justify-content: space-evenly;
+
+    gap: 24px;
+
+    margin: 24px 40px 24px 40px;
+}
+
+/*input de pesquisa*/
+.Search_Input{
+    width: 100%;
+    height: 100%;
+
+    min-width: 170px;
+    min-height: 6px;
+
+    max-width: 350px;
+    max-height: 50px;
+
+
+
+    padding: 2px 0 2px 30px;
+
+    border-style: solid;
+    border-radius: 50px;
+    border-width: 2px;
+    border-color: #A3A3B9;
+
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
+
+}
+
+/*input de pesquisa da esquerda em cima*/
+#Left_Search{
+    display: flex;
+
+    justify-content: start;
+    align-content: start;
+    align-items: start;
+
+    text-align: start;
+
+}
+
+
+.actions_Buttons{
+    font-weight: 700;
+    color: white;
+    text-align: center;
+    justify-content: center;
+    align-self: center;
+    align-items: center;
+    align-content: center;
+    border-radius: 40px;
+}
+
+#nav_ToDoButton{
+    width: 80px;
+    height: 40px;
+
+    background-color: #519FDF;
+}
+
+#nav_DoingButton{
+    width: 90px;
+    height: 40px;
+
+    background-color: #FDBF46;
+}
+
+#nav_DoneButton{
+    width: 80px;
+    height: 40px;
+
+    background-color: #F06A6D;
+}
+
+#nav_AddButton{
+    width: 130px;
+    height: 50px;
+
+    background-color: #5B6097;
+}
+
+.to_do{
+    width: 233px;
+    height: 42px;
+    background-color: #519FDF;
+    margin-top: 10px;
+    color: white;
+    border-radius: 48px;
+    text-align: center;
+}
+
+.header_content{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.header_content > span {
+    flex:1;
+}
+
+
+#row1_Task{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    border-radius: 44px
+}
+
+#row1_Task > span {
+    flex:1;
+}
+
+#row1_Task > div {
+    flex:1;
+}
+
+#main_container{
+    margin-top: 100px;
+}
+
+.table_Data{
+    border-style: solid;
+    border-radius: 44px;
+    border-color: #A3A3B9;
+}

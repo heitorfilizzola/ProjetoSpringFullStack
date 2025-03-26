@@ -1,16 +1,55 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
 <html lang="pt" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 
-<head>
-  <meta charset="UTF-8">
-  <title>Title</title>
-</head>
-<body>
-<h1>Hello World!</h1>
+<head th:replace="~{fragments :: headDefault('Home')}"></head>
+<link rel="stylesheet" th:href="@{/css/Home_Page/style.css}">
 
-<form th:action="@{/logout}" method="POST">
-  <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
-  <button type="submit">Logout</button>
-  </form>
+
+<body>
+
+<header th:replace="~{fragments :: header1}"></header>
+
+<main>
+    <div class="container">
+        <div id="nav_elements">
+            <div id="nav_left_elements">
+                <input
+                        type="text"
+                        class="Search_Input"
+                        id="Left_Search"
+                        placeholder="Pesquise suas tarefas"
+                />
+            </div>
+
+            <div id="nav_right_elements">
+                <a class="actions_Buttons" id="nav_ToDoButton">Fazer</a>
+                <a class="actions_Buttons" id="nav_DoingButton">Fazendo</a>
+                <a class="actions_Buttons" id="nav_DoneButton">Feito</a>
+                <a class="actions_Buttons" id="nav_AddButton">+ Adicionar</a>
+
+                <form th:action="@{/logout}" method="POST">
+                    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+                    <button type="submit">Logout</button>
+                </form>
+            </div>
+        </div>
+
+        <div id="main_container">
+
+            <div id="row1_Task">
+                <span>Tarefa1</span>
+                <span> 21 - 08 - 2023</span>
+                <span> 29 - 09 - 2023</span>
+                <div class="task_Status" id="status_Active"></div>
+            </div>
+
+        </div>
+    </div>
+
+</main>
+
+<footer th:replace="~{fragments :: footerDefault}"></footer>
+
+<script th:src='@{/js/Home_Page/script.js}'></script>
 </body>
 </html>

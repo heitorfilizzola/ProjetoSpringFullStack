@@ -46,7 +46,7 @@ public class RegisterController {
         user.setEmail(registerRequestDTO.getEmail());
         userRepository.save(user);
 
-        ModelAndView mv = new ModelAndView("redirect:Login_Page/index.html");
+        ModelAndView mv = new ModelAndView("Login_Page/index.html");
         return mv;
     }
 

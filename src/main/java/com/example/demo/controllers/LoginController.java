@@ -48,12 +48,3 @@ public class LoginController {
 
     }
 }
-
-
-// receber os valores dos inputs
-// Procurar por nome o usuario
-// se encontrar username
-// usa o Password encoder para verificar se a senha bate com a recebida
-// login
-// se nao
-// Erro
