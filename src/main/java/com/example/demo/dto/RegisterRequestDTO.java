@@ -9,15 +9,15 @@ import org.hibernate.validator.constraints.UniqueElements;
 
 
 public class RegisterRequestDTO {
-    @NotBlank
+    @NotBlank(message = "O nome de usuário é obrigatório")
     @Column(unique = true)
     private String username;
 
     @NotBlank(message="A senha é obrigatória")
     private String password;
 
-    @Email
-    @NotBlank
+    @Email(message = "O formato do email é invalido")
+    @NotBlank(message = "O email é obrigatório")
     @NotNull
     @Column(unique = true)
     private String email;
