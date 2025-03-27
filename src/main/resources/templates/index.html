@@ -27,7 +27,7 @@
                 <a class="actions_Buttons" id="nav_ToDoButton">Fazer</a>
                 <a class="actions_Buttons" id="nav_DoingButton">Fazendo</a>
                 <a class="actions_Buttons" id="nav_DoneButton">Feito</a>
-                <a class="actions_Buttons" id="nav_AddButton" th:href="@{/{uId}/new(uId = ${user.id})}">+ Adicionar</a>
+                <a class="actions_Buttons" id="nav_AddButton" th:href="@{/tasks/new}">+ Adicionar</a>
 
                 <form th:action="@{/logout}" method="POST">
                     <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
@@ -45,7 +45,7 @@
                 <span>Status</span>
             </div>
             <div id="row1_Task" th:each="task : ${tasks}">
-                <span>Tarefa1</span>
+                <span>Tarefa</span>
                 <span th:text="${task.title}"> 21 - 08 - 2023</span>
                 <span th:text="${task.content}"> 29 - 09 - 2023</span>
                 <div class="task_Status" id="status_Active">
