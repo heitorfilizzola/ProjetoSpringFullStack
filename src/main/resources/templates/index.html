@@ -31,7 +31,9 @@
 
                 <form th:action="@{/logout}" method="POST">
                     <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
-                    <button type="submit">Logout</button>
+                    <button type="submit" id="logout_button">
+                        <img th:src="@{/images/Logout.svg}" alt="Logout">
+                    </button>
                 </form>
             </div>
         </div>

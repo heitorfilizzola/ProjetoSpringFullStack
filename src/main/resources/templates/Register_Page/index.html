@@ -8,8 +8,8 @@
 <header th:replace="~{fragments :: header1}"></header>
 <main>
 
-  <div class="Login_Conteiner">
-    <h1 class="Login_Text">Register</h1>
+  <div class="Register_Container" id="Register_Container">
+    <h1 class="Register_Text">Register</h1>
 
 
     <form action="/register" method="POST">
@@ -20,7 +20,7 @@
       </div>
       <input
               type="text"
-              class="Login_Inputs"
+              class="Register_Inputs"
               id="Username_Input"
               name="username"
               placeholder="Username"
@@ -33,7 +33,7 @@
       </div>
       <input
               type="email"
-              class="Login_Inputs"
+              class="Register_Inputs"
               id="Email_Input"
               name="email"
               placeholder="Email"
@@ -45,15 +45,15 @@
         <img th:src='@{/images/PadLock_Vector.svg}'>
       </div>
       <input
-              type="text"
-              class="Login_Inputs"
+              type="password"
+              class="Register_Inputs"
               id="Password_Input"
               name="password"
               placeholder="Password"
       />
     </div>
 
-    <button type="submit" id="Login_Button">Register</button>
+    <button type="submit" id="Register_Button">Register</button>
       </form>
   </div>
 </main>
@@ -61,5 +61,11 @@
 <footer th:replace="~{fragments :: footerDefault}"></footer>
 
 <script th:src='@{/js/Register_Page/script.js}'></script>
+
+<script>
+  window.onload = function () {
+    document.getElementById("Register_Container").scrollIntoView({ behavior: "smooth", block: "center" });
+  };
+</script>
 </body>
 </html>

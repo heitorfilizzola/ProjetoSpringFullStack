@@ -60,6 +60,24 @@ form{
     margin: 24px 40px 24px 40px;
 }
 
+#logout_button {
+    all: unset;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: auto;
+
+    position: absolute;
+    top: 100px;
+    right: 120px;
+}
+
+#logout_button img {
+    width: 30px;
+    height: auto;
+}
+
 /*input de pesquisa*/
 .Search_Input{
     width: 100%;

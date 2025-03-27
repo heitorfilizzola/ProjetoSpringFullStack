@@ -2,15 +2,16 @@
     margin: 0;
     padding: 0;
 
-    /* outline: 1px solid red; */  /*Apenas para debugging */
-
+    /* outline: 1px solid red; /* Apenas para debugging */
 
 }
 
 body {
+    display: flex;
+    flex-direction: column;
     margin: 0;
     padding: 0;
-    height: 100vh;
+    min-height: 100vh;
     width: 100%;
     /* box-sizing: border-box; */
     font-family: "Roboto", sans-serif;
@@ -25,11 +26,13 @@ main{
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: calc(100vh - 64px);
+    flex-grow: 1;
+    flex: 1;
+    min-height: auto;
 }
 
 /* HEADER */
-.Login_Header{
+.Register_Header{
     background-color: #515151;
     height: 64px;
     display: flex;
@@ -51,9 +54,9 @@ main{
 
 }
 
-/* Conteiner Login*/
+/* Conteiner Register*/
 
-.Login_Conteiner{
+.Register_Container{
     display: flex;
     flex-direction: column;
     text-align: center;
@@ -70,6 +73,7 @@ main{
     width: calc(85% - 16px);
     height: 100%;
     margin-top: 100px;
+    margin-bottom: 100px;
     max-width: 615px;
     max-height: 600px;
     min-height: 615px;
@@ -79,9 +83,15 @@ main{
 
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
 
+    animation: fadeIn 0.8s ease-in-out;
 }
 
-.Login_Text{
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(0px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.Register_Text{
     /*text-align: top;*/
     padding-bottom: 5rem;
     padding-top: 4rem;
@@ -91,7 +101,7 @@ main{
     color: #525252;
 }
 
-.Login_Inputs_Div{
+.Register_Inputs_Div{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -102,7 +112,7 @@ main{
     align-content: space-between;
 }
 
-.Login_Inputs{
+.Register_Inputs{
     width: calc(100% - 55px);
     height: 55px;
     border: none;
@@ -115,7 +125,7 @@ main{
     padding-left: 55px;
 }
 
-.Login_Forgot_Password{
+.Register_Forgot_Password{
     margin-top: 15px;
     text-align: center;
     font-weight: 150;
@@ -123,7 +133,7 @@ main{
     cursor: pointer;
 }
 
-#Login_Button{
+#Register_Button{
     display: flex;
     justify-content: center;
     background-color: #515151;
@@ -149,7 +159,7 @@ main{
 
 }
 
-#Login_Button:hover {
+#Register_Button:hover {
     background-color: #252525;
     transition: 0.3s;
     cursor: pointer;
@@ -160,17 +170,18 @@ main{
 
 footer{
     background-color: #d9d9d9;
+    width: 100%;
+    padding: 10px 0;
 }
 
 .Main_Footer{
     height: 100%;
     width: 100%;
-    margin-top: 100px;
+    margin-top: 20px;
     display: flex;;
     flex-wrap: wrap;
     justify-content: space-between;
     flex-direction: row;
-
     padding-bottom: 50px;
 }
 
@@ -179,11 +190,8 @@ footer{
     font-family: "Kite One", sans-serif;
     font-weight: 400;
     font-style: normal;
-
     color: #515151;
-
     padding-top: calc(25px);
-
     margin-right: calc(10%);
 }
 
@@ -199,7 +207,6 @@ footer{
     background-color: #515151;
     margin: 0 0;
     width: calc(100% + 5px);
-
 }
 
 #Right_Footer_Itens{
@@ -208,9 +215,7 @@ footer{
     font-family: "Kite One", sans-serif;
     font-weight: 400;
     font-style: normal;
-
     color: #515151;
-
     padding-top: calc(25px);
     text-align: center;
 }
@@ -223,15 +228,11 @@ footer{
 
 .Copy{
     text-align: center;
-
     font-family: "Kite One", sans-serif;
     font-weight: 250;
     font-style: normal;
     font-size: 13px;
-
-    padding-top: 24px;
-    padding-bottom: 24px;
-
+    padding: 10px 0;
 }
 
 /*

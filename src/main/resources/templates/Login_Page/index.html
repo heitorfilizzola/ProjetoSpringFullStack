@@ -6,7 +6,7 @@
 <header th:replace="~{fragments :: header1}"></header>
 
 <main>
-    <div class="Login_Conteiner">
+    <div class="Login_Container" id="Login_Container">
         <h1 class="Login_Text">Login</h1>
 
 
@@ -55,5 +55,11 @@
 <footer th:replace="~{fragments :: footerDefault}"></footer>
 
 <script th:src='@{/js/Login_Page/script.js}'></script>
+
+<script>
+    window.onload = function () {
+        document.getElementById("Login_Container").scrollIntoView({ behavior: "smooth", block: "center" });
+    };
+</script>
 </body>
 </html>

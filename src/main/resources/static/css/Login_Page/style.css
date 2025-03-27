@@ -2,15 +2,17 @@
   margin: 0;
   padding: 0;
 
-/* outline: 1px solid red; /* Apenas para debugging */
+  /* outline: 1px solid red; /* Apenas para debugging */
 
-  
 }
 
 body {
+  display: flex;
+  flex-direction: column;
+
   margin: 0;
   padding: 0;
-  height: 100vh;
+  min-height: 100vh;
   width: 100%;
   /* box-sizing: border-box; */
   font-family: "Roboto", sans-serif;
@@ -25,7 +27,9 @@ main{
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: calc(100vh - 64px);
+  flex-grow: 1;
+  flex: 1;
+  min-height: auto;
 }
 
 /* HEADER */
@@ -37,10 +41,10 @@ main{
 }
 
 .Notes_Header{
-  padding-left: 5vh;
+  adding-left: 5vh;
   padding-top: 2vh;
   font-style: italic;
-  color: #fff; 
+  color: #fff;
   font-size: 1.5rem;
   cursor: default;
 }
@@ -48,12 +52,11 @@ main{
 .Line_Header{
   background-color: #cacaca;
   width: 100vh;
-
 }
 
 /* Conteiner Login*/
 
-.Login_Conteiner{
+.Login_Container{
   display: flex;
   flex-direction: column;
   text-align: center;
@@ -70,6 +73,7 @@ main{
   width: calc(85% - 16px);
   height: 100%;
   margin-top: 100px;
+  margin-bottom: 100px;
   max-width: 615px;
   max-height: 600px;
   min-height: 615px;
@@ -78,7 +82,12 @@ main{
   border-color:#515151;
 
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
+  animation: fadeIn 0.8s ease-in-out;
+}
 
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(0px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 .Login_Text{
@@ -116,12 +125,21 @@ align-content: space-between;
 }
 
 .Login_Forgot_Password{
-  margin-top: 15px; 
+  margin-top: 10px;
+  font-size: 16px;
+  font-weight: 500;
   text-align: center;
-  font-weight: 150;
   color:#515151;
   cursor: pointer;
-} 
+  text-decoration: none;
+  transition: color 0.3s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.Login_Forgot_Password:hover {
+  color: #000000;
+  transform: scale(1.05);
+  text-decoration: underline;
+}
 
 #Login_Button{
   display: flex;
@@ -159,79 +177,70 @@ align-content: space-between;
 /* Footer */
 
 footer{
-background-color: #d9d9d9;
+  background-color: #d9d9d9;
+  width: 100%;
+  padding: 10px 0;
 }
 
 .Main_Footer{
-height: 100%;
-width: 100%;
-margin-top: 100px;
-display: flex;;
-flex-wrap: wrap;
-justify-content: space-between;
-flex-direction: row;
-
-padding-bottom: 50px;
+  height: 100%;
+  width: 100%;
+  margin-top: 20px;
+  display: flex;;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  flex-direction: row;
+  padding-bottom: 50px;
 }
 
 #Left_Footer_Itens{
-margin-left: calc(5vh);
-font-family: "Kite One", sans-serif;
-font-weight: 400;
-font-style: normal;
-
-color: #515151;
-
-padding-top: calc(25px);
-
-margin-right: calc(10%);
+  margin-left: calc(5vh);
+  font-family: "Kite One", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  color: #515151;
+  padding-top: calc(25px);
+  margin-right: calc(10%);
 }
 
 #Left_Footer_Itens>h4{
-font-size: 13px;
-font-weight: 250;
-margin-bottom: 10px;
+  font-size: 13px;
+  font-weight: 250;
+  margin-bottom: 10px;
 }
 
 .Footer_Line{
-border: none;
-height: 2px;
-background-color: #515151;
-margin: 0 0;
-width: calc(100% + 5px);
-
+  border: none;
+  height: 2px;
+  background-color: #515151;
+  margin: 0 0;
+  width: calc(100% + 5px);
 }
 
 #Right_Footer_Itens{
-margin-right: calc(5vh);
-margin-left: calc(5vh);
-font-family: "Kite One", sans-serif;
-font-weight: 400;
-font-style: normal;
-
-color: #515151;
-
-padding-top: calc(25px);
-text-align: center;
+  margin-right: calc(5vh);
+  margin-left: calc(5vh);
+  font-family: "Kite One", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  color: #515151;
+  padding-top: calc(25px);
+  text-align: center;
 }
 
 #Right_Footer_Itens>h4{
-font-size: 15px;
-font-weight: 250;
-margin-bottom: 10px;
+  font-size: 15px;
+  font-weight: 250;
+  margin-bottom: 10px;
 }
 
 .Copy{
-text-align: center;
-
-font-family: "Kite One", sans-serif;
-font-weight: 250;
-font-style: normal;
-font-size: 13px;
-
-padding-top: 24px;
-padding-bottom: 24px;
-
+  text-align: center;
+  font-family: "Kite One", sans-serif;
+  font-weight: 250;
+  font-style: normal;
+  font-size: 13px;
+  padding: 10px 0;
 }
 
 /*
