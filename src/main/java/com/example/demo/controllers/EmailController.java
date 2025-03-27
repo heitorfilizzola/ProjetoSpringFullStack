@@ -1,16 +1,16 @@
-package com.example.demo.controllers;
-
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-
-@Controller
-public class EmailController {
-
-    public EmailController() {
-    }
-
-    @GetMapping("/email")
-    public String emailForm() {
-        return "emailForm";
-    }
-}
+//package com.example.demo.controllers;
+//
+//import org.springframework.stereotype.Controller;
+//import org.springframework.web.bind.annotation.GetMapping;
+//
+//@Controller
+//public class EmailController {
+//
+//    public EmailController() {
+//    }
+//
+//    @GetMapping("/email")
+//    public String emailForm() {
+//        return "emailForm";
+//    }
+//}

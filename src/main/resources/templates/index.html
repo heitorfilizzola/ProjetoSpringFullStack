@@ -27,7 +27,7 @@
                 <a class="actions_Buttons" id="nav_ToDoButton">Fazer</a>
                 <a class="actions_Buttons" id="nav_DoingButton">Fazendo</a>
                 <a class="actions_Buttons" id="nav_DoneButton">Feito</a>
-                <a class="actions_Buttons" id="nav_AddButton">+ Adicionar</a>
+                <a class="actions_Buttons" id="nav_AddButton" th:href="@{/{uId}/new(uId = ${user.id})}">+ Adicionar</a>
 
                 <form th:action="@{/logout}" method="POST">
                     <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
@@ -44,13 +44,16 @@
                 <span>Data de Entrega</span>
                 <span>Status</span>
             </div>
-            <div id="row1_Task">
+            <div id="row1_Task" th:each="task : ${tasks}">
                 <span>Tarefa1</span>
-                <span> 21 - 08 - 2023</span>
-                <span> 29 - 09 - 2023</span>
+                <span th:text="${task.title}"> 21 - 08 - 2023</span>
+                <span th:text="${task.content}"> 29 - 09 - 2023</span>
                 <div class="task_Status" id="status_Active">
                     <a class="actions_Buttons" id="edit_Task" href="/edit">
                         <img th:src="@{/images/Edit_Vector.svg}">
+                    </a>
+                    <a class="actions_Buttons" id="delete_Task" >
+                        <img th:src="@{/images/TrashCan_Vector.svg}">
                     </a>
                 </div>
             </div>

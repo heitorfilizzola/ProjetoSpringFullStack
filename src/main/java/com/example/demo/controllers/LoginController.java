@@ -37,7 +37,7 @@ public class LoginController {
 
             if (passwordEncoder.matches(request.getPassword(), user.getPassword())) {
                 System.out.println("Login successful");
-                return new ModelAndView("redirect:/");
+                return new ModelAndView("redirect:/" + user.getId());
             } else {
                 mv.addObject("error", "Senha incorreta ou usuário não encontrado");
             }

@@ -3,8 +3,11 @@ package com.example.demo.controllers;
 import com.example.demo.dto.RegisterRequestDTO;
 import com.example.demo.models.User;
 import com.example.demo.repositories.UserRepository;
+import jakarta.json.bind.Jsonb;
+import jakarta.json.bind.JsonbBuilder;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -31,6 +34,7 @@ public class RegisterController {
     public ModelAndView register(@Valid @ModelAttribute RegisterRequestDTO registerRequestDTO, BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
+            System.out.println("Erros de validação: " + bindingResult.getAllErrors());
             ModelAndView mv = new ModelAndView("Register_Page/index.html");
             mv.addObject("error", bindingResult.getAllErrors());
             return mv;
@@ -46,11 +50,12 @@ public class RegisterController {
         userRepository.save(user);
 
         ModelAndView mv = new ModelAndView("Login_Page/index.html");
+
         return mv;
     }
-
-
 }
+
+
 
 
 

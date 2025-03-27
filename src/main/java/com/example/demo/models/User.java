@@ -3,8 +3,11 @@ package com.example.demo.models;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
-@Table(name = "user")
+@Table(name = "users")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -20,13 +23,17 @@ public class User {
     @NotNull
     private String password;
 
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Task> tasks = new ArrayList<>();
+
     public User() {}
 
-    public User(String id, String name, String email, String password) {
+    public User(String id, String name, String email, String password, List<Task> tasks) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.password = password;
+        this.tasks = tasks;
     }
 
     public String getId() {
@@ -62,5 +69,11 @@ public class User {
     }
 
 
+    public List<Task> getTasks() {
+        return tasks;
+    }
 
+    public void setTasks(List<Task> tasks) {
+        this.tasks = tasks;
+    }
 }
