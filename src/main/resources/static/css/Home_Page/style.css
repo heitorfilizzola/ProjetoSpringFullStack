@@ -164,6 +164,10 @@ form{
     text-align: center;
 }
 
+#done{
+    background-color: #F06A6D;
+}
+
 .header_content{
     display: flex;
     flex-direction: row;
@@ -175,19 +179,98 @@ form{
 }
 
 
-#row1_Task{
+.rows_Tasks {
+    grid-template-columns: auto 1fr 1fr auto;
+    gap: 1px;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 44px;
+    border-color: #A3A3B9;
+    margin-top: 21px;
+}
+
+.row_Elements{
+    margin: 12px 6px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-
-    border-radius: 44px
 }
 
-#row1_Task > span {
+.container_Circle {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.container_Circle label{
+    margin-left: 10px;
+}
+
+/* Hide the browser's default checkbox */
+.container_Circle input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+    border-radius: 50%;
+}
+
+/* On mouse-over, add a grey background color */
+.container_Circle:hover input ~ .checkmark {
+    background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+.container_Circle input:checked ~ .checkmark {
+    background-color: #2196F3;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the checkmark when checked */
+.container_Circle input:checked ~ .checkmark:after {
+    display: block;
+}
+
+/* Style the checkmark/indicator */
+.container_Circle .checkmark:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.row_Elements > span {
     flex:1;
 }
 
-#row1_Task > div {
+.row_Elements > div {
     flex:1;
 }
 
@@ -199,4 +282,17 @@ form{
     border-style: solid;
     border-radius: 44px;
     border-color: #A3A3B9;
+}
+
+.task_Status{
+    display: flex;
+    justify-content: space-between;
+}
+
+#Tasks_List{
+    margin-bottom: 80px;
+}
+
+#doing  {
+    background-color: #FDBF46;
 }

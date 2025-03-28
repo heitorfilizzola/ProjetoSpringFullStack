@@ -1,6 +1,7 @@
 package com.example.demo.controllers;
 
 import com.example.demo.dto.TaskRequestDTO;
+import com.example.demo.models.StatusTask;
 import com.example.demo.models.Task;
 import com.example.demo.models.User;
 import com.example.demo.repositories.UserRepository;
@@ -19,34 +20,6 @@ import java.util.Optional;
 public class TaskController {
     @Autowired
     private UserRepository userRepository;
-
-//    @GetMapping("")
-//    public ModelAndView index() {
-//        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-//        String username = auth.getName();
-//        Optional<User> userOptional = userRepository.findByName(username);
-//        User user = userOptional.get();
-//        String usuarioId = user.getId();
-//        return new ModelAndView("redirect:/" + usuarioId);
-//    }
-//
-//    @GetMapping("/{uId}")
-//    public ModelAndView mainPage(@PathVariable String uId) {
-//        Optional<User> userOptional = userRepository.findById(uId);
-//
-//        if (userOptional.isPresent()) {
-//            User user = userOptional.get();
-//            ModelAndView mv = new ModelAndView("index.html");
-//            mv.addObject("user", user);
-//            mv.addObject("tasks", user.getTasks());
-//            return mv;
-//        }else {
-//            ModelAndView mv = new ModelAndView("404.html");
-//            return mv;
-//        }
-//    }
-//
-
 
     @GetMapping("/tasks")
     public ModelAndView mainPage() {
@@ -68,6 +41,8 @@ public class TaskController {
     @GetMapping("/tasks/new")
     public ModelAndView newTask( TaskRequestDTO taskRequestDTO) {
         ModelAndView mv = new ModelAndView("newTask.html");
+        mv.addObject("task", new TaskRequestDTO());
+        mv.addObject("listaStatusTask", StatusTask.values());
         return mv;
     }
 

@@ -11,6 +11,7 @@ public class Task {
     private Long idTask;
     private String title;
     private String content;
+    private StatusTask statusTask;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -20,6 +21,13 @@ public class Task {
         return idTask;
     }
 
+    public StatusTask getStatusTask() {
+        return statusTask;
+    }
+
+    public void setStatusTask(StatusTask statusTask) {
+        this.statusTask = statusTask;
+    }
 
     public String getTitle() {
         return title;

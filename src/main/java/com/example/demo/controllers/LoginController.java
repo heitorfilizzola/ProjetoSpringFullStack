@@ -42,8 +42,8 @@ public class LoginController {
                 mv.addObject("error", "Senha incorreta ou usuário não encontrado");
             }
         }else{
-                mv.addObject("error", "Senha incorreta ou usuário não encontrado");
-            }
+            mv.addObject("error", "Senha incorreta ou usuário não encontrado");
+        }
         return mv;
 
     }
