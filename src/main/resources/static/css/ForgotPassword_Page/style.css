@@ -2,7 +2,7 @@
     margin: 0;
     padding: 0;
 
-    /* outline: 1px solid red; /* Apenas para debugging */
+    /* outline: 1px solid red; Apenas para debugging */
 
 }
 
@@ -13,30 +13,28 @@ body {
     padding: 0;
     min-height: 100vh;
     width: 100%;
-    /* box-sizing: border-box; */
     font-family: "Roboto", sans-serif;
     font-weight: 300;
     font-style: normal;
-    min-height: 100vh;
-}
+    justify-content: space-between;
 
-main{
-    margin: 0;
-    padding: 0;
+main {
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 40px 0;
     flex-grow: 1;
-    flex: 1;
-    min-height: auto;
 }
 
-/* HEADER */
-.Register_Header{
+/* Header */
+
+.Forgot_Header {
     background-color: #515151;
     height: 64px;
     display: flex;
     flex-wrap: wrap;
+    position: relative;
+    z-index: 10;
 }
 
 .Notes_Header{
@@ -54,134 +52,129 @@ main{
 
 }
 
-/* Seta de voltar */
-.back-arrow {
-    position: absolute;
-    top: 30px;
-    right: 30px;
-    cursor: pointer;
-    transition: transform 0.3s;
-}
+    /* Seta de voltar */
+    .back-arrow {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        cursor: pointer;
+        transition: transform 0.3s;
+    }
 
-.back-arrow svg {
-    width: 24px;
-    height: 24px;
-}
+    .back-arrow svg {
+        width: 24px;
+        height: 24px;
+    }
 
-.back-arrow:hover {
-    transform: translateX(-3px);
-}
+    .back-arrow:hover {
+        transform: translateX(-3px);
+    }
 
-/* Conteiner Register*/
-
-.Register_Container{
+/* Container Principal */
+.ForgotPassword_Container {
     position: relative;
     display: flex;
     flex-direction: column;
-    text-align: center;
     align-items: center;
-    border-style: solid;
-    flex-wrap: wrap;
-    box-sizing: border-box;
-    cursor: default;
-
-    padding-left: 24px;
-    padding-right: 24px;
-    padding-bottom: 24px;
-
-    width: calc(85% - 16px);
-    height: 100%;
-    margin-top: 100px;
-    margin-bottom: 100px;
-    max-width: 615px;
-    max-height: 600px;
-    min-height: 615px;
-
+    justify-content: center;
+    width: 90%;
+    max-width: 500px;
+    padding: 40px 30px;
+    margin: 0 auto;
+    border: 2px solid #515151;
     border-radius: 65px;
-    border-color:#515151;
-
-    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
-
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    background-color: white;
     animation: fadeIn 0.8s ease-in-out;
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(0px); }
-    to { opacity: 1; transform: translateY(0); }
+.ForgotPassword_Text {
+    font-size: 2rem;
+    color: #515151;
+    margin-bottom: 30px;
+    font-weight: 500;
 }
 
-.Register_Text{
-    /*text-align: top;*/
-    padding-bottom: 5rem;
-    padding-top: 4rem;
-    font-family: "Roboto", sans-serif;
-    font-weight: 700;
-    font-style: normal;
-    color: #525252;
-}
-
-.Register_Inputs_Div{
+/* Formulário */
+.forgot-password-form {
+    width: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    padding: 20px;
-    padding-bottom: 20px;
-    max-height: 170px;
-    height: 100%;
-    align-content: space-between;
+    gap: 20px;
 }
 
-.Register_Inputs{
-    width: calc(100% - 55px);
-    height: 55px;
-    border: none;
-    border-style: solid;
-    border-width: 4px;
-    border-color: #cacaca;
-    border-radius: 40px;
-    font-size: 15px;
-    font-weight: 700;
-    padding-left: 55px;
-}
-
-.Register_Forgot_Password{
-    margin-top: 15px;
-    text-align: center;
-    font-weight: 150;
-    color:#515151;
-    cursor: pointer;
-}
-
-#Register_Button{
-    display: flex;
-    justify-content: center;
-    background-color: #515151;
+/* Input Field */
+.Register_Inputs {
     width: 100%;
-    height: 100%;
-    max-width: 325px;
-    max-height: 50px;
+    padding: 15px 15px 15px 45px;
+    border: 1px solid #ccc;
+    border-radius: 30px;
+    font-size: 1rem;
+    transition: all 0.3s;
+    box-sizing: border-box;
+}
+
+.Register_Inputs:focus {
+    outline: none;
+    border-color: #515151;
+    box-shadow: 0 0 0 2px rgba(81, 81, 81, 0.2);
+}
+
+/* Botão */
+#Forgot_Button {
+    background-color: #515151;
     color: white;
     border: none;
-
-    border-radius: 40px;
-    border-style: solid;
-    border-color: #d9d9d9;
-    font-size: 20px;
-    font-family: "Roboto", sans-serif;
-    font-weight: 700;
-    font-style: normal;
-    padding: 10px;
-    margin-top: 45px;
-    text-decoration: none;
-
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.15), 0 6px 20px 0 rgba(0,0,0,0.14);
-
+    padding: 15px;
+    border-radius: 30px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-top: 10px;
+    width: 100%;
 }
 
-#Register_Button:hover {
-    background-color: #252525;
-    transition: 0.3s;
-    cursor: pointer;
+#Forgot_Button:hover {
+    background-color: #3a3a3a;
+    transform: translateY(-2px);
+}
+
+/* Mensagens de Alerta */
+.alert {
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+.alert-danger {
+    background-color: #ffebee;
+    color: #c62828;
+    border: 1px solid #ef9a9a;
+}
+
+.alert-success {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+    border: 1px solid #a5d6a7;
+}
+
+/* Posicionamento do Ícone */
+
+div[style*="position: relative"] {
+    width: 100%;
+}
+
+div[style*="position: absolute"] img {
+    width: 20px;
+    height: 20px;
+    filter: opacity(0.7);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 /* Responsividade */
@@ -226,6 +219,8 @@ footer {
     padding: 6px 0;
     font-size: 11px;
 }
+
+
 /*
 .roboto-thin {
   font-family: "Roboto", sans-serif;

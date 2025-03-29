@@ -1,0 +1,60 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments :: headDefault('Forgot Password Page')}">
+    <meta charset="UTF-8">
+</head>
+
+<link rel="stylesheet" th:href="@{/css/ForgotPassword_Page/style.css}">
+
+<body>
+<header th:replace="~{fragments :: header1}"></header>
+
+<main>
+    <div class="ForgotPassword_Container" id="ForgotPassword_Container">
+
+        <a th:href="@{/login}" class="back-arrow curved">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#515151" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M15 18l-6-6 6-6"/>
+                <path d="M9 12h12" style="opacity:0"/> <!-- Espaçamento -->
+            </svg>
+        </a>
+
+        <h1 class="ForgotPassword_Text">Forget Password</h1>
+
+        <form th:action="@{/forgotpassword}" method="POST" th:object="${forgotPasswordRequestDTO}" class="forgot-password-form">
+            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+
+            <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
+            <div th:if="${message}" class="alert alert-success" th:text="${message}"></div>
+
+            <div style="position: relative; width: 100%; margin-top:24px;">
+                <div style="position: absolute; top: 55%; transform: translateY(-50%); left: 16px;">
+                    <img th:src='@{/images/Letter_Vector.svg}' alt="Ícone de e-mail">
+                </div>
+                <input
+                        type="email"
+                        class="Register_Inputs"
+                        id="Email_Input"
+                        th:field="*{email}"
+                        placeholder="Email"
+                        required
+                />
+            </div>
+
+            <button type="submit" id="Forgot_Button">Recover Password</button>
+        </form>
+    </div>
+</main>
+
+<footer th:replace="~{fragments :: footerDefault}"></footer>
+
+<script th:src='@{/js/ForgotPassword_Page/script.js}'></script>
+
+    <script>
+        window.onload = function () {
+            document.getElementById("ForgotPassword_Container").scrollIntoView({ behavior: "smooth", block: "center" });
+        };
+    </script>
+</body>
+</html>
