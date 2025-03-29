@@ -76,4 +76,8 @@ public class User {
     public void setTasks(List<Task> tasks) {
         this.tasks = tasks;
     }
+
+    public void setResetToken(String resetToken) {
+
+    }
 }

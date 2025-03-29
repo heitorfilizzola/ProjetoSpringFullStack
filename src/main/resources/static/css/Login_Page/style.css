@@ -173,6 +173,25 @@ align-content: space-between;
   cursor: pointer;
 }
 
+/* Responsividade */
+
+@media (max-width: 600px) {
+  .ForgotPassword_Container {
+    padding: 30px 20px;
+    margin: 20px auto;
+    border-radius: 40px;
+    width: 95%;
+  }
+
+  .ForgotPassword_Text {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+  }
+
+  .Register_Inputs {
+    padding: 12px 12px 12px 40px;
+  }
+}
 
 /* Footer */
 
