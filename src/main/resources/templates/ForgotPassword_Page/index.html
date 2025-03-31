@@ -20,7 +20,7 @@
             </svg>
         </a>
 
-        <h1 class="ForgotPassword_Text">Forget Password</h1>
+        <h1 class="ForgotPassword_Text">Forgot Password</h1>
 
         <form th:action="@{/forgotpassword}" method="POST" th:object="${forgotPasswordRequestDTO}" class="forgot-password-form">
             <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
@@ -44,6 +44,7 @@
 
             <button type="submit" id="Forgot_Button">Recover Password</button>
         </form>
+
     </div>
 </main>
 

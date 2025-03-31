@@ -115,15 +115,15 @@
             </div>
 
             <div id="Tasks_List">
-            <h3 class="to_do" id="done">Feito</h3>
-            <div id="row1_Task">
-                <div class="row_Elements">
-                    <span></span>
-                    <span>Data de Criação</span>
-                    <span>Data de Entrega</span>
-                    <span>Status</span>
+                <h3 class="to_do" id="done">Feito</h3>
+                <div id="row1_Task">
+                    <div class="row_Elements">
+                        <span></span>
+                        <span>Data de Criação</span>
+                        <span>Data de Entrega</span>
+                        <span>Status</span>
+                    </div>
                 </div>
-            </div>
                 <div class="rows_Tasks" th:each="task : ${tasks}"
                      th:if="${task.statusTask == T(com.example.demo.models.StatusTask).FEITO}">
                     <div class="row_Elements">
