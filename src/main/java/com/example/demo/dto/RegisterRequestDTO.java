@@ -5,6 +5,7 @@ import jakarta.persistence.Column;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import org.hibernate.validator.constraints.UniqueElements;
 
 
@@ -13,12 +14,12 @@ public class RegisterRequestDTO {
     @Column(unique = true)
     private String username;
 
-    @NotBlank(message="A senha é obrigatória")
+    @NotBlank(message = "Senha é obrigatória")
+    @Size(min = 6, message = "Senha deve ter no mínimo 6 caracteres")
     private String password;
 
-    @Email(message = "O formato do email é invalido")
-    @NotBlank(message = "O email é obrigatório")
-    @NotNull
+    @NotBlank(message = "Email é obrigatório")
+    @Email(message = "Email inválido")
     @Column(unique = true)
     private String email;
 

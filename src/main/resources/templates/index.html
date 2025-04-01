@@ -33,10 +33,9 @@
         </div>
         <span th:styleappend="${(param.error == null || param.mensagem == null) ? 'display: none;' : ''}"
               th:classappend="${(param.error != null && param.error) ? 'error-message' : 'success-message'}"
-              th:text="${param.mensagem != null ? param.mensagem : ''}">Uma mensagem bem legal!</span>
+              th:text="${param.mensagem != null ? param.mensagem : ''}">a</span>
 
         <div id="main_container">
-            <!-- Lista de Tarefas para FAZER -->
             <div id="Tasks_List" th:if="${tasks.?[statusTask == T(com.example.demo.models.StatusTask).FAZER].size() > 0}">
                 <h3 class="to_do">Fazer</h3>
                 <div id="row1_Task">

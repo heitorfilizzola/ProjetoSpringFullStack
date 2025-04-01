@@ -34,7 +34,9 @@ public class WebSecurityConfig {
                 )
                 .formLogin(login -> login
                         .loginPage("/login")
-                        .defaultSuccessUrl("/tasks")
+                        .loginProcessingUrl("/login")
+                        .defaultSuccessUrl("/tasks", true)
+                        .failureUrl("/login?error=true")
                         .permitAll()
                 )
                 .logout(logout -> logout
@@ -50,10 +52,11 @@ public class WebSecurityConfig {
 
     @Bean
     public UserDetailsService userDetailsService() {
-       return username -> userRepository.findByName(username)
+        return username -> userRepository.findByName(username)
                 .map(user -> new org.springframework.security.core.userdetails.User(user.getName(), user.getPassword(), List.of(new SimpleGrantedAuthority("ROLE_USER"))))
                 .orElseThrow(() -> new UsernameNotFoundException("User not found"));
     }
+
 
 
 

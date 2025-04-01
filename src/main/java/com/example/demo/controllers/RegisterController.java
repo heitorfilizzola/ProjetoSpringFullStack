@@ -27,34 +27,40 @@ public class RegisterController {
         ModelAndView mv = new ModelAndView("Register_Page/index.html");
         mv.addObject("registerRequestDTO", new RegisterRequestDTO());
         return mv;
-
     }
 
     @PostMapping("register")
-    public ModelAndView register(@Valid @ModelAttribute RegisterRequestDTO registerRequestDTO, BindingResult bindingResult) {
+    public ModelAndView register(@Valid @ModelAttribute("registerRequestDTO") RegisterRequestDTO dto,
+                                 BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
-            System.out.println("Erros de validação: " + bindingResult.getAllErrors());
-            ModelAndView mv = new ModelAndView("Register_Page/index.html");
-            mv.addObject("error", bindingResult.getAllErrors());
-            return mv;
+            return new ModelAndView("Register_Page/index.html", "registerRequestDTO", dto);
         }
 
-        String passwordEncripted = passwordEncoder.encode(registerRequestDTO.getPassword());
+        // Verifica username único
+        userRepository.findFirstByName(dto.getUsername()).ifPresent(u -> {
+            bindingResult.rejectValue("username", "error.username", "Username já está em uso");
+        });
 
-        User user = registerRequestDTO.toEntity();
+        // Verifica email único
+        userRepository.findFirstByEmail(dto.getEmail()).ifPresent(u -> {
+            bindingResult.rejectValue("email", "error.email", "Email já está em uso");
+        });
 
-        user.setName(user.getName());
-        user.setPassword(passwordEncripted);
-        user.setEmail(registerRequestDTO.getEmail());
+        if (bindingResult.hasErrors()) {
+            return new ModelAndView("Register_Page/index.html", "registerRequestDTO", dto);
+        }
+
+        User user = new User();
+        user.setName(dto.getUsername());
+        user.setEmail(dto.getEmail());
+        user.setPassword(passwordEncoder.encode(dto.getPassword()));
+
         userRepository.save(user);
 
-        ModelAndView mv = new ModelAndView("Login_Page/index.html");
-
-        return mv;
+        return new ModelAndView("redirect:/login", "success", "Registro realizado com sucesso!");
     }
 }
-
 
 
 

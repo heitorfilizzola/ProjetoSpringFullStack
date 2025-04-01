@@ -21,30 +21,38 @@ public class LoginController {
 
 
     @GetMapping("login")
-    public ModelAndView showLogin() {
-        ModelAndView modelAndView = new ModelAndView("Login_Page/index.html");
-        modelAndView.addObject("loginRequestDTO", new LoginRequestDTO());
-        return modelAndView;
+    public ModelAndView showLogin(
+            @RequestParam(value = "error", required = false) String error) {
+
+        ModelAndView mv = new ModelAndView("Login_Page/index.html");
+        mv.addObject("loginRequestDTO", new LoginRequestDTO());
+
+        if (error != null) {
+            mv.addObject("error", "Usuário ou senha inválidos");
+        }
+
+        return mv;
     }
 
     @PostMapping("login")
     public ModelAndView login(@ModelAttribute LoginRequestDTO request) {
-        ModelAndView mv = new ModelAndView("Login_Page/index.html");
         Optional<User> userOptional = userRepository.findByName(request.getUsername());
 
-        if (userOptional.isPresent()) {
-            User user = userOptional.get();
-
-            if (passwordEncoder.matches(request.getPassword(), user.getPassword())) {
-                System.out.println("Login successful");
-                return new ModelAndView("redirect:/" + user.getId());
-            } else {
-                mv.addObject("error", "Senha incorreta ou usuário não encontrado");
-            }
-        }else{
-            mv.addObject("error", "Senha incorreta ou usuário não encontrado");
+        if (userOptional.isEmpty()) {
+            ModelAndView mv = new ModelAndView("Login_Page/index.html");
+            mv.addObject("error", "Usuário não encontrado");
+            mv.addObject("loginRequestDTO", request);
+            return mv;
         }
-        return mv;
 
+        User user = userOptional.get();
+        if (!passwordEncoder.matches(request.getPassword(), user.getPassword())) {
+            ModelAndView mv = new ModelAndView("Login_Page/index.html");
+            mv.addObject("error", "Senha incorreta");
+            mv.addObject("loginRequestDTO", request);
+            return mv;
+        }
+
+        return new ModelAndView("redirect:/tasks");
     }
 }

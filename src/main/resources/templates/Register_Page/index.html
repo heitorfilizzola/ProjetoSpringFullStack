@@ -19,7 +19,22 @@
 
     <h1 class="Register_Text">Register</h1>
 
-    <form action="/register" method="POST">
+
+
+    <form action="/register" method="POST" th:object="${registerRequestDTO}">
+      <div style="margin-top: 10px; display: flex; flex-direction:column; align-items: center; justify-content: center;">
+        <!-- Mensagem geral -->
+        <div th:if="${error}" class="error-message" th:text="${error}"></div>
+
+        <!-- Erros de campo específicos -->
+        <div th:if="${#fields.hasErrors('username')}" class="error-message"
+             th:text="${#fields.errors('username')}"></div>
+        <div th:if="${#fields.hasErrors('email')}" class="error-message"
+             th:text="${#fields.errors('email')}"></div>
+        <div th:if="${#fields.hasErrors('password')}" class="error-message"
+             th:text="${#fields.errors('password')}"></div>
+      </div>
+
       <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
     <div style="position: relative; width: 100%;">
       <div style="position: absolute; top: 55%; transform: translateY(-50%); left: 4px;">
@@ -59,9 +74,14 @@
               placeholder="Password"
       />
     </div>
+      <button type="submit" id="Register_Button">Register</button>
 
-    <button type="submit" id="Register_Button">Register</button>
-      </form>
+      <div style="position: relative; width: 100%; margin-top: 24px;">
+        <a class="Login_Forgot_Password" th:href="@{login}">Ja possui uma conta? Fazer Login</a>
+      </div>
+
+
+    </form>
   </div>
 </main>
 

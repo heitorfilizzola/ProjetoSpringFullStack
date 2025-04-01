@@ -11,10 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.validation.BindingResult;
 import org.springframework.security.access.AccessDeniedException;
@@ -110,19 +107,23 @@ public class TaskController {
 
 
     @GetMapping("/delete/{id}")
-    private ModelAndView delete(@PathVariable Long id) {
-        Optional<Task> optional = this.taskRepository.findById(id);
+    public ModelAndView delete(@PathVariable Long id) {
+        // Obtém a autenticação do usuário atual
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String username = auth.getName(); // Obtém o nome de usuário
 
         ModelAndView mv = new ModelAndView("redirect:/tasks");
 
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        // Busca a task verificando se pertence ao usuário
+        Optional<Task> optional = taskRepository.findByIdTaskAndUserName(id, username);
 
         if (optional.isPresent()) {
-            this.taskRepository.deleteById(id);
-            mv.addObject("mensagem", "Task#" + id + "Deletada com sucesso!");
+            taskRepository.deleteById(id);
+            mv.addObject("mensagem", "Task #" + id + " deletada com sucesso!");
             mv.addObject("error", false);
         } else {
-            mv.addObject("mensagem", "DELETE ERROR: Task #" + id + "não encontrada no banco!");
+            // Não encontrou ou não pertence ao usuário
+            mv.addObject("mensagem", "Erro: Task #" + id + " não encontrada ou você não tem permissão!");
             mv.addObject("error", true);
         }
 
