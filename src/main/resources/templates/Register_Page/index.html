@@ -10,13 +10,6 @@
 
   <div class="Register_Container" id="Register_Container">
 
-    <a th:href="@{/login}" class="back-arrow curved">
-      <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#515151" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M15 18l-6-6 6-6"/>
-        <path d="M9 12h12" style="opacity:0"/> <!-- Espaçamento -->
-      </svg>
-    </a>
-
     <h1 class="Register_Text">Register</h1>
 
 
@@ -93,6 +86,61 @@
   window.onload = function () {
     document.getElementById("Register_Container").scrollIntoView({ behavior: "smooth", block: "center" });
   };
+</script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const form = document.querySelector('form');
+
+    form.addEventListener('submit', function(e) {
+      const errors = document.querySelectorAll('.error-message');
+      const hasErrors = Array.from(errors).some(el => el.textContent.trim() !== '');
+
+      if (hasErrors) {
+        e.preventDefault();
+        showErrorPopup(errors);
+      }
+    });
+
+    function showErrorPopup(errorElements) {
+      const popup = document.createElement('div');
+      popup.className = 'error-popup-container';
+
+      let errorMessages = '';
+      errorElements.forEach(el => {
+        if (el.textContent.trim() !== '') {
+          errorMessages += `<div class="error-popup-message">${el.textContent}</div>`;
+        }
+      });
+
+      popup.innerHTML = `
+            <div class="error-popup">
+                <span class="error-popup-close">&times;</span>
+                <div class="error-popup-title">Erros no Formulário</div>
+                ${errorMessages}
+                <button class="error-popup-button">OK</button>
+            </div>
+        `;
+
+      document.body.appendChild(popup);
+
+      // Fechar popup
+      popup.querySelector('.error-popup-close').addEventListener('click', function() {
+        document.body.removeChild(popup);
+      });
+
+      popup.querySelector('.error-popup-button').addEventListener('click', function() {
+        document.body.removeChild(popup);
+      });
+
+      // Fechar ao clicar fora
+      popup.addEventListener('click', function(e) {
+        if (e.target === popup) {
+          document.body.removeChild(popup);
+        }
+      });
+    }
+  });
 </script>
 </body>
 </html>

@@ -63,5 +63,43 @@
         document.getElementById("Login_Container").scrollIntoView({ behavior: "smooth", block: "center" });
     };
 </script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const errorMessage = document.querySelector('.error-message');
+        if (errorMessage && errorMessage.textContent.trim() !== '') {
+            showErrorPopup(errorMessage.textContent);
+        }
+
+        function showErrorPopup(errorText) {
+            const popup = document.createElement('div');
+            popup.className = 'error-popup-container';
+
+            popup.innerHTML = `
+                <div class="error-popup">
+                    <span class="error-popup-close">&times;</span>
+                    <div class="error-popup-title">Erro no Login</div>
+                    <div class="error-popup-message">${errorText}</div>
+                    <button class="error-popup-button">OK</button>
+                </div>
+            `;
+
+            document.body.appendChild(popup);
+
+            const closePopup = function() {
+                document.body.removeChild(popup);
+            };
+
+            popup.querySelector('.error-popup-close').addEventListener('click', closePopup);
+            popup.querySelector('.error-popup-button').addEventListener('click', closePopup);
+
+            popup.addEventListener('click', function(e) {
+                if (e.target === popup) {
+                    closePopup();
+                }
+            });
+        }
+    });
+</script>
 </body>
 </html>

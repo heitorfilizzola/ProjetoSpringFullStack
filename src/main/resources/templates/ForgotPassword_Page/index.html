@@ -25,8 +25,8 @@
         <form th:action="@{/forgotpassword}" method="POST" th:object="${forgotPasswordRequestDTO}" class="forgot-password-form">
             <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
 
-            <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
-            <div th:if="${message}" class="alert alert-success" th:text="${message}"></div>
+            <!-- Mensagem de erro (hidden) -->
+            <div th:if="${error}" class="error-message" th:text="${error}"></div>
 
             <div style="position: relative; width: 100%; margin-top:24px;">
                 <div style="position: absolute; top: 55%; transform: translateY(-50%); left: 16px;">
@@ -44,18 +44,62 @@
 
             <button type="submit" id="Forgot_Button">Recover Password</button>
         </form>
-
     </div>
 </main>
 
 <footer th:replace="~{fragments :: footerDefault}"></footer>
 
-<script th:src='@{/js/ForgotPassword_Page/script.js}'></script>
+<script>
+    function showErrorPopup(message) {
+        const popup = document.createElement('div');
+        popup.className = 'error-popup-container';
 
-    <script>
-        window.onload = function () {
-            document.getElementById("ForgotPassword_Container").scrollIntoView({ behavior: "smooth", block: "center" });
-        };
-    </script>
+        popup.innerHTML = `
+            <div class="error-popup">
+                <div class="error-popup-title">Erro</div>
+                <div class="error-popup-message">${message}</div>
+                <button class="error-popup-button" onclick="closeErrorPopup()">OK</button>
+            </div>
+        `;
+
+        document.body.appendChild(popup);
+
+        popup.addEventListener('click', function(e) {
+            if (e.target === popup) {
+                closeErrorPopup();
+            }
+        });
+    }
+
+    function closeErrorPopup() {
+        const popup = document.querySelector('.error-popup-container');
+        if (popup) {
+            popup.remove();
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.querySelector('.forgot-password-form');
+
+        if (form) {
+            form.addEventListener('submit', function(e) {
+                const errorElement = document.querySelector('.error-message');
+
+                if (errorElement && errorElement.textContent.trim() !== '') {
+                    e.preventDefault();
+                    showErrorPopup(errorElement.textContent);
+                }
+            });
+        }
+
+        const container = document.getElementById('ForgotPassword_Container');
+        if (container) {
+            container.scrollIntoView({
+                behavior: 'smooth',
+                block: 'center'
+            });
+        }
+    });
+</script>
 </body>
 </html>

@@ -139,26 +139,60 @@ main {
     transform: translateY(-2px);
 }
 
-/* Mensagens de Alerta */
-.alert {
-    padding: 12px;
-    border-radius: 8px;
-    margin-bottom: 20px;
-    text-align: center;
-    font-size: 0.9rem;
-}
+/* Error message */
+    .error-popup-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0,0,0,0.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+    }
 
-.alert-danger {
-    background-color: #ffebee;
-    color: #c62828;
-    border: 1px solid #ef9a9a;
-}
+    .error-popup {
+        background-color: white;
+        padding: 25px;
+        border-radius: 15px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        max-width: 400px;
+        width: 90%;
+        text-align: center;
+    }
 
-.alert-success {
-    background-color: #e8f5e9;
-    color: #2e7d32;
-    border: 1px solid #a5d6a7;
-}
+    .error-popup-title {
+        font-weight: bold;
+        margin-bottom: 15px;
+        color: #F06A6D;
+        font-size: 1.2rem;
+    }
+
+    .error-popup-message {
+        margin-bottom: 20px;
+        color: #333;
+    }
+
+    .error-popup-button {
+        background-color: #515151;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 20px;
+        cursor: pointer;
+        font-weight: bold;
+        transition: background-color 0.3s;
+    }
+
+    .error-popup-button:hover {
+        background-color: #252525;
+    }
+
+    .error-message {
+        display: none; /* Esconde a mensagem original */
+    }
 
 /* Posicionamento do Ícone */
 
@@ -219,7 +253,6 @@ footer {
     padding: 6px 0;
     font-size: 11px;
 }
-
 
 /*
 .roboto-thin {
