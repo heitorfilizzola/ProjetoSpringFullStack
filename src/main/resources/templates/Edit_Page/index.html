@@ -1,10 +1,57 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 
+<head th:replace="~{fragments :: headDefault('Edit Page')}"></head>
+
+<link rel="stylesheet" th:href="@{/css/Edit_Page/style.css}" />
+
+<body>
+<header th:replace="~{fragments :: header1}"></header>
+
+<main>
+    <form th:action="@{/tasks/edit}" method="post" th:object="${taskEditRequestDTO}">
+        <input type="hidden" th:field="*{idTask}">
+
+        <h2>Edite suas tarefas</h2>
+
+        <div class="form-group">
+            <label for="title">Título</label>
+            <input type="text" id="title" th:field="*{title}" class="form-control" placeholder="Novo título de sua tarefa">
+        </div>
+
+        <div class="form-group">
+            <label for="content">Descrição</label>
+            <textarea id="content" th:field="*{content}" class="form-control" placeholder="Nova descrição da sua tarefa"></textarea>
+        </div>
+
+        <div class="form-group">
+            <label>Status</label>
+            <div class="checkbox-container">
+                <select class="form-select" th:field="*{statusTask}">
+                    <option
+                            th:each="status : ${listaStatusTask}"
+                            th:value="${status}"
+                            th:text="${status}">
+                    </option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Datas</label>
+            <div class="date-inputs">
+                <input type="date" placeholder="Data de início">
+                <input type="date" placeholder="Data de término">
+            </div>
+        </div>
+
+        <hr>
+
+        <button type="submit" class="btn btn-primary">Salvar</button>
+    </form>
+</main>
+
+<footer th:replace="~{fragments :: footerDefault}"></footer>
+<script src="js/Edit_Page/script.js"></script>
 </body>
 </html>
