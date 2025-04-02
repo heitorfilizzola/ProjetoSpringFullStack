@@ -67,8 +67,17 @@
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         const errorMessage = document.querySelector('.error-message');
+
+        // Verifica se existe mensagem de erro e se não está vazia
         if (errorMessage && errorMessage.textContent.trim() !== '') {
-            showErrorPopup(errorMessage.textContent);
+            // Armazena a mensagem antes de remover o elemento
+            const errorText = errorMessage.textContent;
+
+            // Remove a mensagem inline
+            errorMessage.remove();
+
+            // Cria o popup de erro
+            showErrorPopup(errorText);
         }
 
         function showErrorPopup(errorText) {

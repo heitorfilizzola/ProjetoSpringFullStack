@@ -1,15 +1,15 @@
-main{
+/* ESTILOS GERAIS */
+main {
     justify-content: unset;
     align-items: unset;
     padding: 20px 0;
 }
 
-form{
+form {
     all: unset;
 }
 
-
-.container{
+.container {
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
@@ -19,10 +19,8 @@ form{
     font-family: "Roboto", sans-serif;
 }
 
-
-/* Navbar superior */
-
-#nav_elements{
+/* BARRA SUPERIOR */
+#nav_elements {
     display: flex;
     flex-flow: row wrap;
     justify-content: space-between;
@@ -31,33 +29,28 @@ form{
     gap: 50px;
 }
 
-#nav_left_elements{
+#nav_left_elements {
     display: flex;
-
     width: 100%;
     height: 100%;
-
     max-width: 350px;
     max-height: 50px;
-
     margin: 24px 40px 24px 50px;
 }
 
-#nav_right_elements{
+#nav_right_elements {
     display: flex;
-
     flex-direction: row;
     flex-wrap: wrap;
     text-align: center;
     align-items: baseline;
     align-content: center;
     justify-content: space-evenly;
-
     gap: 24px;
-
     margin: 24px 40px 24px 40px;
 }
 
+/* BOTÃO DE LOGOUT */
 #logout_button {
     background: none;
     border: none;
@@ -67,45 +60,35 @@ form{
     transition: background 0.3s;
 }
 
-
 #logout_button img {
     width: 30px;
     height: 30px;
 }
 
-/*input de pesquisa*/
-.Search_Input{
+/* CAMPO DE PESQUISA */
+.Search_Input {
     width: 100%;
     padding: 10px 15px 10px 30px;
-
     min-width: 170px;
     min-height: 6px;
-
     max-width: 350px;
     max-height: 50px;
-
-
     border: 2px solid;
     border-radius: 50px;
     font-size: 17px;
-
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
 }
 
-/*input de pesquisa da esquerda em cima*/
-#Left_Search{
+#Left_Search {
     display: flex;
-
     justify-content: start;
     align-content: start;
     align-items: start;
-
     text-align: start;
-
 }
 
-
-.actions_Buttons{
+/* BOTÕES DE AÇÃO */
+.actions_Buttons {
     display: inline-flex;
     padding: 8px 16px;
     font-weight: 700;
@@ -126,31 +109,28 @@ form{
     opacity: 1;
 }
 
-#nav_ToDoButton{
+#nav_ToDoButton {
     width: 80px;
     height: 40px;
     padding: 10px 20px;
-
     background-color: #519FDF;
 }
 
-
-#nav_DoneButton{
+#nav_DoneButton {
     width: 80px;
     height: 40px;
     padding: 10px 20px;
-
     background-color: #F06A6D;
 }
 
-#nav_AddButton{
+#nav_AddButton {
     width: 130px;
     height: 50px;
     padding: 10px 20px;
-
     background-color: #5B6097;
 }
 
+/* CABEÇALHO DAS TAREFAS */
 .to_do {
     display: inline-block;
     padding: 10px 25px;
@@ -166,7 +146,7 @@ form{
     background-color: #F06A6D;
 }
 
-.header_content{
+.header_content {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -174,9 +154,10 @@ form{
 }
 
 .header_content > span {
-    flex:1;
+    flex: 1;
 }
 
+/* LISTA DE TAREFAS */
 .rows_Tasks {
     grid-template-columns: auto 1fr 1fr auto;
     padding: 10px 15px 10px 8px;
@@ -193,28 +174,25 @@ form{
     box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 }
 
-.row_Elements{
+.row_Elements {
     display: flex;
     align-items: center;
 }
 
+/* CHECKBOX PERSONALIZADO */
 .container_Circle {
     display: flex;
     align-items: center;
     position: relative;
     padding-left: 35px;
     cursor: pointer;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
     user-select: none;
 }
 
-.container_Circle label{
+.container_Circle label {
     margin-left: 10px;
 }
 
-/* Hide the browser's default checkbox */
 .container_Circle input {
     position: absolute;
     opacity: 0;
@@ -223,10 +201,9 @@ form{
     width: 0;
 }
 
-/* Create a custom checkbox */
 .checkmark {
     position: absolute;
-    top: 0;
+    top: 1;
     left: 0;
     height: 25px;
     width: 25px;
@@ -235,30 +212,25 @@ form{
     transition: all 0.3s;
 }
 
-/* On mouse-over, add a grey background color */
 .container_Circle:hover input ~ .checkmark {
     background-color: #519FDF;
 }
 
-/* When the checkbox is checked, add a blue background */
 .container_Circle input:checked ~ .checkmark {
     background-color: #519FDF;
     border-color: #519FDF;
 }
 
-/* Create the checkmark/indicator (hidden when not checked) */
 .checkmark:after {
     content: "";
     position: absolute;
     display: none;
 }
 
-/* Show the checkmark when checked */
 .container_Circle input:checked ~ .checkmark:after {
     display: block;
 }
 
-/* Style the checkmark/indicator */
 .container_Circle .checkmark:after {
     left: 9px;
     top: 5px;
@@ -266,11 +238,10 @@ form{
     height: 10px;
     border: solid white;
     border-width: 0 3px 3px 0;
-    -webkit-transform: rotate(45deg);
-    -ms-transform: rotate(45deg);
     transform: rotate(45deg);
 }
 
+/* LAYOUT DAS LINHAS */
 .row_Elements > span {
     flex: 1;
 }
@@ -279,17 +250,13 @@ form{
     flex: 1;
 }
 
-#main_container{
+/* CONTAINER PRINCIPAL */
+#main_container {
     margin-top: 60px;
 }
 
-.table_Data{
-    border-style: solid;
-    border-radius: 44px;
-    border-color: #A3A3B9;
-}
-
-.task_Status{
+/* STATUS DAS TAREFAS */
+.task_Status {
     display: flex;
     gap: 10px;
 }
@@ -299,8 +266,7 @@ form{
     font-size: 14px;
 }
 
-#Tasks_List{
+/* LISTA DE TAREFAS */
+#Tasks_List {
     margin-bottom: 60px;
 }
-
-

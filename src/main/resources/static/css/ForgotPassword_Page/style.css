@@ -1,9 +1,7 @@
+/* RESET E ESTILOS GLOBAIS */
 * {
     margin: 0;
     padding: 0;
-
-    /* outline: 1px solid red; Apenas para debugging */
-
 }
 
 body {
@@ -15,9 +13,10 @@ body {
     width: 100%;
     font-family: "Roboto", sans-serif;
     font-weight: 300;
-    font-style: normal;
     justify-content: space-between;
+}
 
+/* LAYOUT PRINCIPAL */
 main {
     display: flex;
     justify-content: center;
@@ -26,8 +25,7 @@ main {
     flex-grow: 1;
 }
 
-/* Header */
-
+/* CABEÇALHO */
 .Forgot_Header {
     background-color: #515151;
     height: 64px;
@@ -37,7 +35,7 @@ main {
     z-index: 10;
 }
 
-.Notes_Header{
+.Notes_Header {
     padding-left: 5vh;
     padding-top: 2vh;
     font-style: italic;
@@ -46,31 +44,29 @@ main {
     cursor: default;
 }
 
-.Line_Header{
+.Line_Header {
     background-color: #cacaca;
     width: 100vh;
-
 }
 
-    /* Seta de voltar */
-    .back-arrow {
-        position: absolute;
-        top: 30px;
-        right: 30px;
-        cursor: pointer;
-        transition: transform 0.3s;
-    }
+.back-arrow {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
 
-    .back-arrow svg {
-        width: 24px;
-        height: 24px;
-    }
+.back-arrow svg {
+    width: 24px;
+    height: 24px;
+}
 
-    .back-arrow:hover {
-        transform: translateX(-3px);
-    }
+.back-arrow:hover {
+    transform: translateX(-3px);
+}
 
-/* Container Principal */
+/* CONTAINER PRINCIPAL */
 .ForgotPassword_Container {
     position: relative;
     display: flex;
@@ -88,6 +84,11 @@ main {
     animation: fadeIn 0.8s ease-in-out;
 }
 
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
 .ForgotPassword_Text {
     font-size: 2rem;
     color: #515151;
@@ -95,7 +96,7 @@ main {
     font-weight: 500;
 }
 
-/* Formulário */
+/* FORMULÁRIO */
 .forgot-password-form {
     width: 100%;
     display: flex;
@@ -103,7 +104,7 @@ main {
     gap: 20px;
 }
 
-/* Input Field */
+/* CAMPOS DE ENTRADA */
 .Register_Inputs {
     width: 100%;
     padding: 15px 15px 15px 45px;
@@ -120,7 +121,18 @@ main {
     box-shadow: 0 0 0 2px rgba(81, 81, 81, 0.2);
 }
 
-/* Botão */
+/* POSICIONAMENTO DE ÍCONES */
+div[style*="position: relative"] {
+    width: 100%;
+}
+
+div[style*="position: absolute"] img {
+    width: 20px;
+    height: 20px;
+    filter: opacity(0.7);
+}
+
+/* BOTÃO */
 #Forgot_Button {
     background-color: #515151;
     color: white;
@@ -139,100 +151,62 @@ main {
     transform: translateY(-2px);
 }
 
-/* Error message */
-    .error-popup-container {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background-color: rgba(0,0,0,0.5);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        z-index: 1000;
-    }
-
-    .error-popup {
-        background-color: white;
-        padding: 25px;
-        border-radius: 15px;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-        max-width: 400px;
-        width: 90%;
-        text-align: center;
-    }
-
-    .error-popup-title {
-        font-weight: bold;
-        margin-bottom: 15px;
-        color: #F06A6D;
-        font-size: 1.2rem;
-    }
-
-    .error-popup-message {
-        margin-bottom: 20px;
-        color: #333;
-    }
-
-    .error-popup-button {
-        background-color: #515151;
-        color: white;
-        border: none;
-        padding: 10px 20px;
-        border-radius: 20px;
-        cursor: pointer;
-        font-weight: bold;
-        transition: background-color 0.3s;
-    }
-
-    .error-popup-button:hover {
-        background-color: #252525;
-    }
-
-    .error-message {
-        display: none; /* Esconde a mensagem original */
-    }
-
-/* Posicionamento do Ícone */
-
-div[style*="position: relative"] {
-    width: 100%;
+/* MENSAGENS DE ERRO */
+.error-popup-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
 }
 
-div[style*="position: absolute"] img {
-    width: 20px;
-    height: 20px;
-    filter: opacity(0.7);
+.error-popup {
+    background-color: white;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    max-width: 400px;
+    width: 90%;
+    text-align: center;
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+.error-popup-title {
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #F06A6D;
+    font-size: 1.2rem;
 }
 
-/* Responsividade */
-
-@media (max-width: 600px) {
-    .ForgotPassword_Container {
-        padding: 30px 20px;
-        margin: 20px auto;
-        border-radius: 40px;
-        width: 95%;
-    }
-
-    .ForgotPassword_Text {
-        font-size: 1.5rem;
-        margin-bottom: 20px;
-    }
-
-    .Register_Inputs {
-        padding: 12px 12px 12px 40px;
-    }
+.error-popup-message {
+    margin-bottom: 20px;
+    color: #333;
 }
 
-/* Footer */
+.error-popup-button {
+    background-color: #515151;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
 
+.error-popup-button:hover {
+    background-color: #252525;
+}
+
+.error-message {
+    display: none;
+}
+
+/* RODAPÉ */
 footer {
     background-color: #d9d9d9;
     width: 100%;
@@ -254,76 +228,21 @@ footer {
     font-size: 11px;
 }
 
-/*
-.roboto-thin {
-  font-family: "Roboto", sans-serif;
-  font-weight: 100;
-  font-style: normal;
-}
+/* RESPONSIVIDADE */
+@media (max-width: 600px) {
+    .ForgotPassword_Container {
+        padding: 30px 20px;
+        margin: 20px auto;
+        border-radius: 40px;
+        width: 95%;
+    }
 
-.roboto-light {
-  font-family: "Roboto", sans-serif;
-  font-weight: 300;
-  font-style: normal;
-}
+    .ForgotPassword_Text {
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+    }
 
-.roboto-regular {
-  font-family: "Roboto", sans-serif;
-  font-weight: 400;
-  font-style: normal;
+    .Register_Inputs {
+        padding: 12px 12px 12px 40px;
+    }
 }
-
-.roboto-medium {
-  font-family: "Roboto", sans-serif;
-  font-weight: 500;
-  font-style: normal;
-}
-
-.roboto-bold {
-  font-family: "Roboto", sans-serif;
-  font-weight: 700;
-  font-style: normal;
-}
-
-.roboto-black {
-  font-family: "Roboto", sans-serif;
-  font-weight: 900;
-  font-style: normal;
-}
-
-.roboto-thin-italic {
-  font-family: "Roboto", sans-serif;
-  font-weight: 100;
-  font-style: italic;
-}
-
-.roboto-light-italic {
-  font-family: "Roboto", sans-serif;
-  font-weight: 300;
-  font-style: italic;
-}
-
-.roboto-regular-italic {
-  font-family: "Roboto", sans-serif;
-  font-weight: 400;
-  font-style: italic;
-}
-
-.roboto-medium-italic {
-  font-family: "Roboto", sans-serif;
-  font-weight: 500;
-  font-style: italic;
-}
-
-.roboto-bold-italic {
-  font-family: "Roboto", sans-serif;
-  font-weight: 700;
-  font-style: italic;
-}
-
-.roboto-black-italic {
-  font-family: "Roboto", sans-serif;
-  font-weight: 900;
-  font-style: italic;
-}
-*/

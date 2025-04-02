@@ -1,57 +1,46 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
 <html lang="pt" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="~{fragments :: headDefault('Edit Page')}"></head>
+<head th:replace="~{fragments :: headDefault('Edit Page')}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
 
 <link rel="stylesheet" th:href="@{/css/Edit_Page/style.css}" />
 
 <body>
 <header th:replace="~{fragments :: header1}"></header>
 
-<main>
-    <form th:action="@{/tasks/edit}" method="post" th:object="${taskEditRequestDTO}">
+<main class="edit-page">
+    <form class="edit-form" th:action="@{/tasks/edit}" method="post" th:object="${taskEditRequestDTO}">
         <input type="hidden" th:field="*{idTask}">
 
-        <h2>Edite suas tarefas</h2>
+        <h1 class="edit-title">Edite suas tarefas</h1>
 
         <div class="form-group">
-            <label for="title">Título</label>
-            <input type="text" id="title" th:field="*{title}" class="form-control" placeholder="Novo título de sua tarefa">
+            <label for="title" class="form-label">Título</label>
+            <input type="text" id="title" th:field="*{title}" class="form-input" placeholder="Novo título de sua tarefa">
         </div>
 
         <div class="form-group">
-            <label for="content">Descrição</label>
-            <textarea id="content" th:field="*{content}" class="form-control" placeholder="Nova descrição da sua tarefa"></textarea>
+            <label for="content" class="form-label">Descrição</label>
+            <textarea id="content" th:field="*{content}" class="form-input" placeholder="Nova descrição da sua tarefa" style="min-height: 120px; resize: vertical;"></textarea>
         </div>
 
         <div class="form-group">
-            <label>Status</label>
-            <div class="checkbox-container">
-                <select class="form-select" th:field="*{statusTask}">
-                    <option
-                            th:each="status : ${listaStatusTask}"
-                            th:value="${status}"
-                            th:text="${status}">
-                    </option>
-                </select>
-            </div>
+            <label class="form-label">Status</label>
+            <select class="form-select" th:field="*{statusTask}">
+                <option
+                        th:each="status : ${listaStatusTask}"
+                        th:value="${status}"
+                        th:text="${status}">
+                </option>
+            </select>
         </div>
 
-        <div class="form-group">
-            <label>Datas</label>
-            <div class="date-inputs">
-                <input type="date" placeholder="Data de início">
-                <input type="date" placeholder="Data de término">
-            </div>
-        </div>
-
-        <hr>
-
-        <button type="submit" class="btn btn-primary">Salvar</button>
+        <button type="submit" class="save-btn">Salvar</button>
     </form>
 </main>
 
 <footer th:replace="~{fragments :: footerDefault}"></footer>
-<script src="js/Edit_Page/script.js"></script>
 </body>
 </html>

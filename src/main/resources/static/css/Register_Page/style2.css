@@ -1,9 +1,7 @@
+/* RESET E ESTILOS GLOBAIS */
 * {
     margin: 0;
     padding: 0;
-
-    /* outline: 1px solid red; /* Apenas para debugging */
-
 }
 
 body {
@@ -13,14 +11,12 @@ body {
     padding: 0;
     min-height: 100vh;
     width: 100%;
-    /* box-sizing: border-box; */
     font-family: "Roboto", sans-serif;
     font-weight: 300;
-    font-style: normal;
-    min-height: 100vh;
 }
 
-main{
+/* LAYOUT PRINCIPAL */
+main {
     margin: 0;
     padding: 0;
     display: flex;
@@ -31,15 +27,15 @@ main{
     min-height: auto;
 }
 
-/* HEADER */
-.Register_Header{
+/* CABEÇALHO */
+.Register_Header {
     background-color: #515151;
     height: 64px;
     display: flex;
     flex-wrap: wrap;
 }
 
-.Notes_Header{
+.Notes_Header {
     padding-left: 5vh;
     padding-top: 2vh;
     font-style: italic;
@@ -48,14 +44,12 @@ main{
     cursor: default;
 }
 
-.Line_Header{
+.Line_Header {
     background-color: #cacaca;
     width: 100vh;
-
 }
 
-/* Conteiner Register*/
-
+/* CONTAINER DE REGISTRO */
 .Register_Container {
     position: relative;
     display: flex;
@@ -65,15 +59,13 @@ main{
     border-style: solid;
     box-sizing: border-box;
     cursor: default;
-
     width: calc(85% - 16px);
     margin: 100px auto;
     max-width: 615px;
     min-height: 615px;
-
     border-radius: 65px;
     border-color: #515151;
-    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
     animation: fadeIn 0.8s ease-in-out;
 }
 
@@ -82,69 +74,59 @@ main{
     to { opacity: 1; transform: translateY(0); }
 }
 
+/* TEXTO E FORMULÁRIO */
 .Register_Text {
-    padding: 5rem 0; /* Igual ao login */
+    padding: 4rem 0;
     font-family: "Roboto", sans-serif;
     font-weight: 700;
-    font-style: normal;
     color: #525252;
-    font-size: 2rem; /* Adicionado para igualar ao login */
+    font-size: 2rem;
 }
 
-.Register_Inputs_Div{
+.Register_Inputs_Div {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     padding: 20px;
-    padding-bottom: 20px;
     max-height: 170px;
     height: 100%;
-    align-content: space-between;
 }
 
 .Register_Inputs {
     width: calc(100% - 55px);
     height: 55px;
-    border: 4px solid #cacaca; /* Simplificado */
+    border: 4px solid #cacaca;
     border-radius: 40px;
     font-size: 15px;
     font-weight: 700;
     padding-left: 55px;
-    margin-bottom: 1px; /* Adicionado espaçamento */
+    margin-bottom: 1px;
 }
 
-.Register_Forgot_Password{
+/* LINKS E BOTÕES */
+.Register_Forgot_Password {
     margin-top: 15px;
     text-align: center;
     font-weight: 150;
-    color:#515151;
+    color: #515151;
     cursor: pointer;
 }
 
-#Register_Button{
+#Register_Button {
     display: flex;
     justify-content: center;
     background-color: #515151;
     width: 100%;
-    height: 100%;
     max-width: 325px;
-    max-height: 50px;
+    height: 50px;
     color: white;
-    border: none;
-
+    border: solid #d9d9d9;
     border-radius: 40px;
-    border-style: solid;
-    border-color: #d9d9d9;
     font-size: 20px;
-    font-family: "Roboto", sans-serif;
     font-weight: 700;
-    font-style: normal;
     padding: 10px;
     margin-top: 45px;
-    text-decoration: none;
-
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.15), 0 6px 20px 0 rgba(0,0,0,0.14);
-
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.15);
 }
 
 #Register_Button:hover {
@@ -153,27 +135,10 @@ main{
     cursor: pointer;
 }
 
-/* Responsividade */
-
-@media (max-width: 600px) {
-    .ForgotPassword_Container {
-        padding: 30px 20px;
-        margin: 20px auto;
-        border-radius: 40px;
-        width: 95%;
-    }
-
-    .ForgotPassword_Text {
-        font-size: 1.5rem;
-        margin-bottom: 20px;
-    }
-
-    .Register_Inputs {
-        padding: 12px 12px 12px 40px;
-    }
+/* MENSAGENS DE ERRO */
+.error-message {
+    display: none;
 }
-
-/* Error message */
 
 .error-popup-container {
     position: fixed;
@@ -236,12 +201,7 @@ main{
     background-color: #252525;
 }
 
-.error-message {
-    display: none;
-}
-
-/* Footer */
-
+/* RODAPÉ */
 footer {
     background-color: #d9d9d9;
     width: 100%;
@@ -262,76 +222,17 @@ footer {
     padding: 6px 0;
     font-size: 11px;
 }
-/*
-.roboto-thin {
-  font-family: "Roboto", sans-serif;
-  font-weight: 100;
-  font-style: normal;
-}
 
-.roboto-light {
-  font-family: "Roboto", sans-serif;
-  font-weight: 300;
-  font-style: normal;
-}
+/* RESPONSIVIDADE */
+@media (max-width: 600px) {
+    .Register_Container {
+        padding: 30px 20px;
+        margin: 20px auto;
+        border-radius: 40px;
+        width: 95%;
+    }
 
-.roboto-regular {
-  font-family: "Roboto", sans-serif;
-  font-weight: 400;
-  font-style: normal;
+    .Register_Inputs {
+        padding: 12px 12px 12px 40px;
+    }
 }
-
-.roboto-medium {
-  font-family: "Roboto", sans-serif;
-  font-weight: 500;
-  font-style: normal;
-}
-
-.roboto-bold {
-  font-family: "Roboto", sans-serif;
-  font-weight: 700;
-  font-style: normal;
-}
-
-.roboto-black {
-  font-family: "Roboto", sans-serif;
-  font-weight: 900;
-  font-style: normal;
-}
-
-.roboto-thin-italic {
-  font-family: "Roboto", sans-serif;
-  font-weight: 100;
-  font-style: italic;
-}
-
-.roboto-light-italic {
-  font-family: "Roboto", sans-serif;
-  font-weight: 300;
-  font-style: italic;
-}
-
-.roboto-regular-italic {
-  font-family: "Roboto", sans-serif;
-  font-weight: 400;
-  font-style: italic;
-}
-
-.roboto-medium-italic {
-  font-family: "Roboto", sans-serif;
-  font-weight: 500;
-  font-style: italic;
-}
-
-.roboto-bold-italic {
-  font-family: "Roboto", sans-serif;
-  font-weight: 700;
-  font-style: italic;
-}
-
-.roboto-black-italic {
-  font-family: "Roboto", sans-serif;
-  font-weight: 900;
-  font-style: italic;
-}
-*/
