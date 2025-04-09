@@ -89,18 +89,13 @@
 </script>
 
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const form = document.querySelector('form');
+  document.addEventListener('DOMContentLoaded', function () {
+    const errorElements = document.querySelectorAll('.error-message');
+    const hasErrors = Array.from(errorElements).some(el => el.textContent.trim() !== '');
 
-    form.addEventListener('submit', function(e) {
-      const errors = document.querySelectorAll('.error-message');
-      const hasErrors = Array.from(errors).some(el => el.textContent.trim() !== '');
-
-      if (hasErrors) {
-        e.preventDefault();
-        showErrorPopup(errors);
-      }
-    });
+    if (hasErrors) {
+      showErrorPopup(errorElements);
+    }
 
     function showErrorPopup(errorElements) {
       const popup = document.createElement('div');
@@ -114,27 +109,25 @@
       });
 
       popup.innerHTML = `
-            <div class="error-popup">
-                <span class="error-popup-close">&times;</span>
-                <div class="error-popup-title">Erros no Formulário</div>
-                ${errorMessages}
-                <button class="error-popup-button">OK</button>
-            </div>
-        `;
+        <div class="error-popup">
+          <span class="error-popup-close">&times;</span>
+          <div class="error-popup-title">Erros no Formulário</div>
+          ${errorMessages}
+          <button class="error-popup-button">OK</button>
+        </div>
+      `;
 
       document.body.appendChild(popup);
 
-      // Fechar popup
-      popup.querySelector('.error-popup-close').addEventListener('click', function() {
+      popup.querySelector('.error-popup-close').addEventListener('click', function () {
         document.body.removeChild(popup);
       });
 
-      popup.querySelector('.error-popup-button').addEventListener('click', function() {
+      popup.querySelector('.error-popup-button').addEventListener('click', function () {
         document.body.removeChild(popup);
       });
 
-      // Fechar ao clicar fora
-      popup.addEventListener('click', function(e) {
+      popup.addEventListener('click', function (e) {
         if (e.target === popup) {
           document.body.removeChild(popup);
         }
