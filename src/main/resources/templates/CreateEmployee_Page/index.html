@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Funcionários</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .emp_area {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 20px;
+            margin: 100px auto 0;
+            max-width: 980px;
+            background-color: #f9f9f9;
+        }
+        
+        .add_emp {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            gap: 20px;
+        }
+        
+        .add_emp > div {
+            flex: 1;
+        }
+        
+        .add_emp input {
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        
+        .cad_area {
+            text-align: center;
+            margin-top: 20px;
+        }
+        
+        .cad_button {
+            background-color: #5571a5;
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+        
+        .colaboradores {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 10px;
+            margin: 20px auto;
+            max-width: 1000px;
+        }
+        
+        .cola_cab {
+            display: flex;
+            width: 100%;
+            padding: 10px 0;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .cola_cab:first-child {
+            font-weight: bold;
+            background-color: #f2f2f2;
+        }
+        
+        .cola_part {
+            flex: 1;
+            padding: 0 10px;
+            text-align: left;
+        }
+        
+        .remover-btn, .remover_button {
+            background-color: #d9534f;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+        
+        .button_part {
+            width: 80px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="emp_area">
+        <div class="add_emp">
+            <div class="nome_emp">
+                <input type="text" placeholder="Nome do empregado">
+            </div>
+            <div>
+                <input type="email" placeholder="Email do empregado">
+            </div>
+        </div>
+        <div class="add_emp">
+            <div>
+                <input type="password" placeholder="Senha do empregado">
+            </div>
+            <div>
+                <input type="text" placeholder="Cargo do empregado">
+            </div>
+        </div>
+        <div class="cad_area">
+            <button class="cad_button">Cadastrar</button>
+        </div>
+    </div>
+    <div class="colaboradores">
+        <div class="cola_cab">
+            <div class="cola_part">Nome do colaborador</div>
+            <div class="cola_part">E-mail</div>
+            <div class="cola_part">Cargo</div>
+            <div class="button_part"></div>
+        </div>
+        
+        <div class="cola_cab">
+            <div class="cola_part">Teste teste teste</div>
+            <div class="cola_part">Teste123456@gmail.com</div>
+            <div class="cola_part">Admin</div>
+            <div class="button_part"><button class="remover-btn">Remover</button></div>
+        </div>
+        
+        <div class="cola_cab">
+            <div class="cola_part">Teste teste teste</div>
+            <div class="cola_part">Teste123456@gmail.com</div>
+            <div class="cola_part">User</div>
+            <div class="button_part"><button class="remover-btn">Remover</button></div>
+        </div>
+        
+        <div class="cola_cab">
+            <div class="cola_part">Teste teste teste</div>
+            <div class="cola_part">Teste123456@gmail.com</div>
+            <div class="cola_part">User</div>
+            <div class="button_part"><button class="remover_button">Remover</button></div>
+        </div>
+    </div>
+</body>
+</html>
