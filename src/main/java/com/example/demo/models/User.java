@@ -26,6 +26,9 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Task> tasks = new ArrayList<>();
 
+    @NotNull
+    private RolesUser rolesUser;
+
     public User() {}
 
     public User(String id, String name, String email, String password, List<Task> tasks) {
@@ -34,6 +37,23 @@ public class User {
         this.email = email;
         this.password = password;
         this.tasks = tasks;
+    }
+
+    public User(String id, String name, String email, String password, List<Task> tasks, RolesUser rolesUser) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.tasks = tasks;
+        this.rolesUser = rolesUser;
+    }
+
+    public RolesUser getRolesUser() {
+        return rolesUser;
+    }
+
+    public void setRolesUser(RolesUser rolesUser) {
+        this.rolesUser = rolesUser;
     }
 
     public String getId() {
