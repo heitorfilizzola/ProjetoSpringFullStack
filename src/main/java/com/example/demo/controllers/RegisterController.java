@@ -1,10 +1,14 @@
 package com.example.demo.controllers;
 
 import com.example.demo.dto.RegisterRequestDTO;
+import com.example.demo.models.RolesUser;
 import com.example.demo.models.User;
 import com.example.demo.repositories.UserRepository;
+import jakarta.json.bind.Jsonb;
+import jakarta.json.bind.JsonbBuilder;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -52,6 +56,7 @@ public class RegisterController {
         user.setName(dto.getUsername());
         user.setEmail(dto.getEmail());
         user.setPassword(passwordEncoder.encode(dto.getPassword()));
+        user.setRolesUser(RolesUser.user);
 
         userRepository.save(user);
 

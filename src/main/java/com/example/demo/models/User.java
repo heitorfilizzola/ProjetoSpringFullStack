@@ -23,11 +23,17 @@ public class User {
     @NotNull
     private String password;
 
+    @ManyToOne(optional = true)
+    @JoinColumn(name = "enterprise_id")
+    private Enterprise enterprise;
+
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    private RolesUser rolesUser;
+
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Task> tasks = new ArrayList<>();
 
-    @NotNull
-    private RolesUser rolesUser;
 
     public User() {}
 

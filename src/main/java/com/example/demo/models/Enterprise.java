@@ -12,17 +12,17 @@ public class Enterprise {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    private Long id;
+    private String id;
 
     @NotNull
     @Column(unique = true)
     private String name;
 
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "enterprise", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<User> userList = new ArrayList<>( );
 
-    public Enterprise(Long id, String name, List<User> userList) {
+    public Enterprise(String id, String name, List<User> userList) {
         this.id = id;
         this.name = name;
         this.userList = userList;
@@ -30,11 +30,11 @@ public class Enterprise {
 
     public Enterprise() {}
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 

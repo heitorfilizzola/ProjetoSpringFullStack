@@ -21,6 +21,8 @@ public class CreateEmployeeDTO {
     @Column(unique = true)
     private String email;
 
+
+
     @NotBlank(message = "O Cargo não pode estar em branco")
     private RolesUser rolesUser;
 
