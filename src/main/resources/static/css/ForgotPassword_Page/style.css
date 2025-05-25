@@ -206,6 +206,30 @@ div[style*="position: absolute"] img {
     display: none;
 }
 
+.message-box { /* Para as mensagens de redirect no ForgotPassword_Page/index.html */
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    text-align: center;
+}
+.alert-info {
+    background-color: #e7f3fe;
+    border-color: #d0eaff;
+    color: #0c5460;
+}
+.alert-danger {
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    color: #721c24;
+}
+.field-error-message { /* Para erros de campo específicos */
+    color: red;
+    font-size: 0.9em;
+    margin-top: 4px;
+    text-align: left; /* Ou center, dependendo do seu layout */
+    padding-left: 15px; /* Ajustar conforme necessário */
+}
+
 /* RODAPÉ */
 footer {
     background-color: #d9d9d9;

@@ -1,0 +1,95 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments :: headDefault('Redefinir Senha')}"></head>
+<link rel="stylesheet" th:href="@{/css/ResetPassword_Page/style.css}">
+
+<body>
+<header th:replace="~{fragments :: header1}"></header>
+
+<main class="rp-main-container">
+  <div class="rp-card">
+    <h1 class="rp-title">Redefinir Sua Senha</h1>
+
+    <form class="rp-form" th:action="@{/reset-password}" method="POST" th:object="${resetPasswordDTO}">
+      <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+      <input type="hidden" th:field="*{token}" />
+
+      <div th:if="${error}" class="rp-message rp-message-error" th:text="${error}"></div>
+      <div th:if="${success}" class="rp-message rp-message-success" th:text="${success}"></div>
+      <div th:if="${#fields.hasGlobalErrors()}" class="rp-message rp-message-error">
+        <p th:each="err : ${#fields.globalErrors()}" th:text="${err}"></p>
+      </div>
+
+      <div class="rp-form-group">
+        <label for="newPassword" class="rp-label">Nova Senha</label>
+        <div class="rp-input-wrapper">
+          <img th:src='@{/images/PadLock_Vector.svg}' class="rp-input-icon" alt="Ícone de cadeado">
+          <input type="password" id="newPassword" class="rp-input" th:field="*{newPassword}" placeholder="Digite sua nova senha" required />
+        </div>
+        <div th:if="${#fields.hasErrors('newPassword')}" class="rp-field-error" th:errors="*{newPassword}"></div>
+      </div>
+
+      <div class="rp-form-group">
+        <label for="confirmPassword" class="rp-label">Confirmar Nova Senha</label>
+        <div class="rp-input-wrapper">
+          <img th:src='@{/images/PadLock_Vector.svg}' class="rp-input-icon" alt="Ícone de cadeado">
+          <input type="password" id="confirmPassword" class="rp-input" th:field="*{confirmPassword}" placeholder="Confirme sua nova senha" required />
+        </div>
+        <div th:if="${#fields.hasErrors('confirmPassword')}" class="rp-field-error" th:errors="*{confirmPassword}"></div>
+      </div>
+
+      <button type="submit" class="rp-button rp-button-primary">Redefinir Senha</button>
+    </form>
+  </div>
+</main>
+
+<footer th:replace="~{fragments :: footerDefault}"></footer>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const errorElements = document.querySelectorAll('.rp-message-error');
+    errorElements.forEach(errorElement => {
+      if (errorElement && errorElement.textContent.trim() !== '') {
+        showPopup(errorElement.textContent, 'Atenção');
+      }
+    });
+
+    const successElements = document.querySelectorAll('.rp-message-success');
+    successElements.forEach(successElement => {
+      if (successElement && successElement.textContent.trim() !== '') {
+        showPopup(successElement.textContent, 'Sucesso');
+      }
+    });
+  });
+
+  function showPopup(message, title) {
+    const existingPopup = document.querySelector('.error-popup-container');
+    if (existingPopup) existingPopup.remove();
+
+    const popup = document.createElement('div');
+    popup.className = 'error-popup-container';
+    popup.innerHTML = `
+                <div class="error-popup">
+                    <div class="error-popup-title">${title}</div>
+                    <div class="error-popup-message">${message}</div>
+                    <button class="error-popup-button" onclick="closePopup()">OK</button>
+                </div>
+            `;
+    document.body.appendChild(popup);
+    popup.addEventListener('click', function (e) {
+      if (e.target === popup || e.target.classList.contains('error-popup-button')) {
+        closePopup();
+      }
+    });
+  }
+
+  function closePopup() {
+    const popup = document.querySelector('.error-popup-container');
+    if (popup) {
+      popup.remove();
+    }
+  }
+</script>
+</body>
+</html>

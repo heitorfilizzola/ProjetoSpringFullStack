@@ -14,35 +14,31 @@
     <div class="ForgotPassword_Container" id="ForgotPassword_Container">
 
         <a th:href="@{/login}" class="back-arrow curved">
-            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#515151" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M15 18l-6-6 6-6"/>
-                <path d="M9 12h12" style="opacity:0"/> <!-- Espaçamento -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
+                 stroke="#515151" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M15 18l-6-6 6-6" />
+                <path d="M9 12h12" style="opacity:0" />
             </svg>
         </a>
 
-        <h1 class="ForgotPassword_Text">Forgot Password</h1>
+        <h1 class="ForgotPassword_Text">Esqueceu a Senha?</h1>
 
-        <form th:action="@{/forgotpassword}" method="POST" th:object="${forgotPasswordRequestDTO}" class="forgot-password-form">
+        <div th:if="${message}" class="alert alert-info message-box" role="alert" th:text="${message}"></div>
+        <div th:if="${error}" class="alert alert-danger error-message-visible message-box" role="alert" th:text="${error}"></div>
+        <form th:action="@{/forgotpassword}" method="POST" th:object="${forgotPasswordRequestDTO}"
+              class="forgot-password-form">
             <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
-
-            <!-- Mensagem de erro (hidden) -->
-            <div th:if="${error}" class="error-message" th:text="${error}"></div>
 
             <div style="position: relative; width: 100%; margin-top:24px;">
                 <div style="position: absolute; top: 55%; transform: translateY(-50%); left: 16px;">
                     <img th:src='@{/images/Letter_Vector.svg}' alt="Ícone de e-mail">
                 </div>
-                <input
-                        type="email"
-                        class="Register_Inputs"
-                        id="Email_Input"
-                        th:field="*{email}"
-                        placeholder="Email"
-                        required
-                />
+                <input type="email" class="Register_Inputs" id="Email_Input" th:field="*{email}" placeholder="Email"
+                       required />
+                <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="field-error-message">Erro no email</div>
             </div>
 
-            <button type="submit" id="Forgot_Button">Recover Password</button>
+            <button type="submit" id="Forgot_Button">Recuperar Senha</button>
         </form>
     </div>
 </main>
@@ -50,56 +46,47 @@
 <footer th:replace="~{fragments :: footerDefault}"></footer>
 
 <script>
-    function showErrorPopup(message) {
+    document.addEventListener('DOMContentLoaded', function () {
+        // Captura mensagens de redirect (erro ou informação)
+        const messageBoxError = document.querySelector('.error-message-visible.message-box');
+        if (messageBoxError && messageBoxError.textContent.trim() !== '') {
+            showPopup(messageBoxError.textContent, 'Erro'); // Título do popup
+            // messageBoxError.style.display = 'none'; // Opcional
+        }
+
+        const messageBoxInfo = document.querySelector('.alert-info.message-box');
+        if (messageBoxInfo && messageBoxInfo.textContent.trim() !== '') {
+            showPopup(messageBoxInfo.textContent, 'Informação'); // Título do popup
+            // messageBoxInfo.style.display = 'none'; // Opcional
+        }
+    });
+
+    function showPopup(message, title) {
+        const existingPopup = document.querySelector('.error-popup-container');
+        if (existingPopup) existingPopup.remove();
+
         const popup = document.createElement('div');
-        popup.className = 'error-popup-container';
-
+        popup.className = 'error-popup-container'; // Reutilizando a classe
         popup.innerHTML = `
-            <div class="error-popup">
-                <div class="error-popup-title">Erro</div>
-                <div class="error-popup-message">${message}</div>
-                <button class="error-popup-button" onclick="closeErrorPopup()">OK</button>
-            </div>
-        `;
-
+                <div class="error-popup"> <div class="error-popup-title">${title}</div>
+                    <div class="error-popup-message">${message}</div>
+                    <button class="error-popup-button" onclick="closeErrorPopup()">OK</button>
+                </div>
+            `;
         document.body.appendChild(popup);
-
-        popup.addEventListener('click', function(e) {
-            if (e.target === popup) {
+        popup.addEventListener('click', function (e) {
+            if (e.target === popup || e.target.classList.contains('error-popup-button')) {
                 closeErrorPopup();
             }
         });
     }
 
-    function closeErrorPopup() {
+    function closeErrorPopup() { // Renomear para closePopup se for genérico
         const popup = document.querySelector('.error-popup-container');
         if (popup) {
             popup.remove();
         }
     }
-
-    document.addEventListener('DOMContentLoaded', function() {
-        const form = document.querySelector('.forgot-password-form');
-
-        if (form) {
-            form.addEventListener('submit', function(e) {
-                const errorElement = document.querySelector('.error-message');
-
-                if (errorElement && errorElement.textContent.trim() !== '') {
-                    e.preventDefault();
-                    showErrorPopup(errorElement.textContent);
-                }
-            });
-        }
-
-        const container = document.getElementById('ForgotPassword_Container');
-        if (container) {
-            container.scrollIntoView({
-                behavior: 'smooth',
-                block: 'center'
-            });
-        }
-    });
 </script>
 </body>
 </html>

@@ -2,13 +2,14 @@ package com.example.demo.models;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
-
+import java.time.LocalDateTime; // Importar LocalDateTime
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table(name = "users")
 public class User {
+
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
@@ -34,6 +35,8 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Task> tasks = new ArrayList<>();
 
+    private String resetPasswordToken;
+    private LocalDateTime resetPasswordTokenExpiry;
 
     public User() {}
 
@@ -51,14 +54,6 @@ public class User {
         this.email = email;
         this.password = password;
         this.tasks = tasks;
-        this.rolesUser = rolesUser;
-    }
-
-    public RolesUser getRolesUser() {
-        return rolesUser;
-    }
-
-    public void setRolesUser(RolesUser rolesUser) {
         this.rolesUser = rolesUser;
     }
 
@@ -94,6 +89,21 @@ public class User {
         this.password = password;
     }
 
+    public Enterprise getEnterprise() {
+        return enterprise;
+    }
+
+    public void setEnterprise(Enterprise enterprise) {
+        this.enterprise = enterprise;
+    }
+
+    public RolesUser getRolesUser() {
+        return rolesUser;
+    }
+
+    public void setRolesUser(RolesUser rolesUser) {
+        this.rolesUser = rolesUser;
+    }
 
     public List<Task> getTasks() {
         return tasks;
@@ -103,7 +113,19 @@ public class User {
         this.tasks = tasks;
     }
 
-    public void setResetToken(String resetToken) {
+    public String getResetPasswordToken() {
+        return resetPasswordToken;
+    }
 
+    public void setResetPasswordToken(String resetPasswordToken) {
+        this.resetPasswordToken = resetPasswordToken;
+    }
+
+    public LocalDateTime getResetPasswordTokenExpiry() {
+        return resetPasswordTokenExpiry;
+    }
+
+    public void setResetPasswordTokenExpiry(LocalDateTime resetPasswordTokenExpiry) {
+        this.resetPasswordTokenExpiry = resetPasswordTokenExpiry;
     }
 }

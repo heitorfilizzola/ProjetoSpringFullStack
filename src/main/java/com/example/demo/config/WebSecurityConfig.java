@@ -1,4 +1,3 @@
-
 package com.example.demo.config;
 
 import com.example.demo.repositories.UserRepository;
@@ -7,14 +6,11 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configurers.LogoutConfigurer;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+
 
 import java.util.List;
 
@@ -29,7 +25,16 @@ public class WebSecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests((requests) -> requests
-                        .requestMatchers("/login", "/forgotpassword", "/register", "/css/**", "/js/**", "/images/**", "/error/**").permitAll()
+                        .requestMatchers(
+                                "/login",
+                                "/forgotpassword",
+                                "/reset-password",
+                                "/register",
+                                "/css/**",
+                                "/js/**",
+                                "/images/**",
+                                "/error/**"
+                        ).permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin(login -> login
@@ -41,7 +46,7 @@ public class WebSecurityConfig {
                 )
                 .logout(logout -> logout
                         .logoutUrl("/logout")
-                        .logoutSuccessUrl("/login")
+                        .logoutSuccessUrl("/login?logout")
                         .invalidateHttpSession(true)
                         .deleteCookies("JSESSIONID")
                         .permitAll()
@@ -53,11 +58,11 @@ public class WebSecurityConfig {
     @Bean
     public UserDetailsService userDetailsService() {
         return username -> userRepository.findByName(username)
-                .map(user -> new org.springframework.security.core.userdetails.User(user.getName(), user.getPassword(), List.of(new SimpleGrantedAuthority("ROLE_USER"))))
-                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+                .map(user -> new org.springframework.security.core.userdetails.User(
+                        user.getName(),
+                        user.getPassword(),
+                        List.of(new SimpleGrantedAuthority("ROLE_USER"))
+                ))
+                .orElseThrow(() -> new UsernameNotFoundException("Usuário '" + username + "' não encontrado"));
     }
-
-
-
-
 }

@@ -1,0 +1,209 @@
+
+body {
+    font-family: "Roboto", sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f7f6;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.rp-main-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.rp-card {
+    background-color: #ffffff;
+    padding: 30px 40px;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 450px;
+    text-align: center;
+}
+
+.rp-title {
+    font-size: 2rem;
+    color: #515151;
+    margin-bottom: 30px;
+    font-weight: 700;
+}
+
+.rp-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.rp-form-group {
+    text-align: left;
+}
+
+.rp-label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #555;
+    font-size: 0.9rem;
+}
+
+.rp-input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.rp-input-icon {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 18px;
+    height: 18px;
+    opacity: 0.6;
+}
+
+.rp-input {
+    width: 100%;
+    padding: 12px 15px 12px 45px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.rp-input:focus {
+    outline: none;
+    border-color: #515151;
+    box-shadow: 0 0 0 2px rgba(81, 81, 81, 0.2);
+}
+
+.rp-button.rp-button-primary {
+    background-color: #515151;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-top: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.rp-button.rp-button-primary:hover {
+    background-color: #3a3a3a;
+    transform: translateY(-2px);
+}
+
+.rp-button.rp-button-primary:active {
+    transform: translateY(0);
+}
+
+.rp-message {
+    padding: 10px 15px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    font-size: 0.95rem;
+}
+
+.rp-message-error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+.rp-message-success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.rp-field-error {
+    color: #d9534f;
+    font-size: 0.85rem;
+    margin-top: 5px;
+    text-align: left;
+}
+
+@media (max-width: 600px) {
+    .rp-card {
+        padding: 20px;
+        margin: 15px;
+    }
+
+    .rp-title {
+        font-size: 1.7rem;
+    }
+
+    .rp-input {
+        padding: 10px 10px 10px 40px;
+    }
+
+    .rp-button.rp-button-primary {
+        font-size: 1rem;
+        padding: 10px 15px;
+    }
+}
+
+.error-popup-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    padding: 15px;
+}
+
+.error-popup {
+    background-color: white;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+}
+
+.error-popup-title {
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #515151;
+    font-size: 1.2rem;
+}
+
+.error-popup-message {
+    margin-bottom: 20px;
+    color: #333;
+    line-height: 1.5;
+}
+
+.error-popup-button {
+    background-color: #515151;
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.error-popup-button:hover {
+    background-color: #3a3a3a;
+}
