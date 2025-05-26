@@ -1,0 +1,44 @@
+
+main{
+    height: 55vh;
+}
+
+.colaboradores {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 20px auto;
+    max-width: 1000px;
+}
+
+.cola_cab {
+    display: flex;
+    width: 100%;
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.cola_cab:first-child {
+    font-weight: bold;
+    background-color: #f2f2f2;
+}
+
+.cola_part {
+    flex: 1;
+    padding: 0 10px;
+    text-align: left;
+}
+
+.remover-btn, .remover_button {
+    background-color: #d9534f;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.button_part {
+    width: 80px;
+    text-align: center;
+}
