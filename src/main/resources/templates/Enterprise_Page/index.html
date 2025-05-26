@@ -1,0 +1,49 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: headDefault('Enterprise')}"></head>
+<link rel="stylesheet" th:href="@{/css/Enterprise_Page/style.css}"/>
+
+<body>
+<header th:replace="~{fragments :: header1}"></header>
+
+<main>
+<div class="colaboradores">
+    <div class="cola_cab">
+        <div class="cola_part">Nome do colaborador</div>
+        <div class="cola_part">E-mail</div>
+        <div class="cola_part">Cargo</div>
+        <div class="button_part"></div>
+    </div>
+
+    <div class="cola_cab">
+        <div class="cola_part">Teste teste teste</div>
+        <div class="cola_part">Teste123456@gmail.com</div>
+        <div class="cola_part">Admin</div>
+        <div class="button_part">
+            <button class="remover-btn">Remover</button>
+        </div>
+    </div>
+
+    <div class="cola_cab">
+        <div class="cola_part">Teste teste teste</div>
+        <div class="cola_part">Teste123456@gmail.com</div>
+        <div class="cola_part">User</div>
+        <div class="button_part">
+            <button class="remover-btn">Remover</button>
+        </div>
+    </div>
+
+    <div class="cola_cab">
+        <div class="cola_part">Teste teste teste</div>
+        <div class="cola_part">Teste123456@gmail.com</div>
+        <div class="cola_part">User</div>
+        <div class="button_part">
+            <button class="remover_button">Remover</button>
+        </div>
+    </div>
+</div>
+</main>
+
+<footer th:replace="~{fragments :: footerDefault}"></footer>
+</body>
+</html>

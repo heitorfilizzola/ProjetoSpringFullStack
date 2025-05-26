@@ -1,0 +1,51 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+main{
+    height: 55vh;
+}
+
+.emp_area {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 20px;
+    margin: 100px auto 0;
+    max-width: 980px;
+    background-color: #f9f9f9;
+}
+
+.add_emp {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    gap: 20px;
+}
+
+.add_emp > div {
+    flex: 1;
+}
+
+.add_emp input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.cad_area {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.cad_button {
+    background-color: #5571a5;
+    color: white;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+}

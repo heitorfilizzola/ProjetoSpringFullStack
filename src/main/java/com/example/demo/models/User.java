@@ -28,6 +28,8 @@ public class User {
     @JoinColumn(name = "enterprise_id")
     private Enterprise enterprise;
 
+    private String enterpriseAdmin;
+
     @NotNull
     @Enumerated(EnumType.STRING)
     private RolesUser rolesUser;
@@ -48,13 +50,33 @@ public class User {
         this.tasks = tasks;
     }
 
-    public User(String id, String name, String email, String password, List<Task> tasks, RolesUser rolesUser) {
+    public User(String id, String name, String email, String password, List<Task> tasks, RolesUser rolesUser, Enterprise enterprise) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.tasks = tasks;
+        this.enterprise = enterprise;
+        this.rolesUser = rolesUser;
+    }
+
+    public User(String id, String name, String email, String password, List<Task> tasks, RolesUser rolesUser, Enterprise enterprise, String enterpriseAdmin) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.password = password;
         this.tasks = tasks;
         this.rolesUser = rolesUser;
+        this.enterprise = enterprise;
+        this.enterpriseAdmin = enterpriseAdmin;
+    }
+
+    public String getEnterpriseAdmin() {
+        return enterpriseAdmin;
+    }
+
+    public void setEnterpriseAdmin(String enterpriseAdmin) {
+        this.enterpriseAdmin = enterpriseAdmin;
     }
 
     public String getId() {

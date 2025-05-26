@@ -18,7 +18,6 @@ public class Enterprise {
     @Column(unique = true)
     private String name;
 
-
     @OneToMany(mappedBy = "enterprise", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<User> userList = new ArrayList<>( );
 
@@ -29,6 +28,7 @@ public class Enterprise {
     }
 
     public Enterprise() {}
+
 
     public String getId() {
         return id;

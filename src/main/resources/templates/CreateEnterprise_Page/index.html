@@ -1,10 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: head('Create Enterprise')}"></head>
 
+<link th:href="@{/css/CreateEnterprise_Page/style.css}" rel="stylesheet"/>
+
+<body>
+<header th:replace="~{fragments :: header1}"></header>
+<main>
+    <form action="/CriarEmpresa" method="POST" th:object="${criarEmpresa}">
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+
+        <section class="create-enterprise"></section>
+        <div class="add_ent">
+            <input class="name_ent" type="text"
+                   placeholder="Nome da Empresa"
+                   id="Enterprise_Name"
+                   name="enterpriseName"
+                   th:field="*{enterpriseName}"/>
+            <div class="btn_ent">
+                <button type="submit" class="regist_ent">Registrar</button>
+            </div>
+        </div>
+    </form>
+</main>
+
+<footer th:replace="~{fragments :: footerDefault}"></footer>
 </body>
 </html>

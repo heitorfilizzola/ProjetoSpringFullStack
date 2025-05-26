@@ -1,0 +1,162 @@
+main{
+    height: 55vh;
+}
+
+.create-enterprise {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 50px 20px;
+    gap: 50px;
+}
+
+.add_ent {
+    width: 818px;
+    height: 282px;
+    border: 1px solid #CACACA;
+    border-radius: 40px;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    background-color: white;
+    gap: 20px;
+}
+
+.name_ent {
+    width: 462px;
+    height: 74px;
+    border: 1px solid #D0D0D0;
+    outline: none;
+    font-size: 20px;
+    padding: 12px 20px;
+    border-radius: 25px;
+    background-color: #F8F8F8;
+    color: #999;
+    margin: 40px 304px 86px 52px;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+.name_ent::placeholder {
+    color: #AAA;
+}
+
+.btn_ent {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 40px;
+}
+
+.regist_ent, .editar_ent {
+    text-align: center;
+    padding: 10px 30px;
+    color: white;
+    border-radius: 40px;
+    cursor: pointer;
+    font-size: 30px;
+    font-weight: bold;
+    transition: all 0.3s;
+    border: none;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+.regist_ent {
+    background-color: #6B7CE8;
+    width: 234px;
+    height: 49px;
+    margin-left: 66px;
+}
+
+.regist_ent:hover {
+    background-color: #5A6BD8;
+}
+
+.editar_ent {
+    background-color: #4CAF50;
+    margin-left: 120px;
+}
+
+.editar_ent:hover {
+    background-color: #45A049;
+}
+
+.colaboradores {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: white;
+    max-width: 1200px;
+    width: 100%;
+    max-height: 600px;
+    height: 100%;
+    overflow: hidden;
+}
+
+.cola_header {
+    display: flex;
+    width: 100%;
+    padding: 15px;
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #ddd;
+    font-weight: bold;
+    font-size: 22px;
+    color: #666;
+}
+
+.cola_row {
+    display: flex;
+    width: 100%;
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+    align-items: center;
+}
+
+.cola_row:last-child {
+    border-bottom: none;
+}
+
+.cola_nome {
+    flex: 2;
+    padding-right: 15px;
+    font-weight: 500;
+}
+
+.cola_email {
+    flex: 2.5;
+    padding-right: 15px;
+    color: #666;
+}
+
+.cola_cargo {
+    flex: 1;
+    padding-right: 15px;
+    color: #666;
+}
+
+.cola_status {
+    flex: 1;
+    padding-right: 15px;
+    color: #666;
+}
+
+.cola_action {
+    flex: 1;
+    text-align: center;
+}
+
+.deletar-btn {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 15px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: bold;
+    font-size: 20px;
+    transition: background-color 0.3s;
+}
+
+.deletar-btn:hover {
+    background-color: #c82333;
+}
