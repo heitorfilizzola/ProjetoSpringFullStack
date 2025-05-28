@@ -2,14 +2,18 @@ package com.example.demo.dto;
 
 import com.example.demo.models.StatusTask;
 import com.example.demo.models.Task;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 public class TaskRequestDTO {
-    @NotNull(message = "O título não pode estar em branco")
+
+    @NotBlank(message = "O título não pode estar em branco")
     private String title;
-    @NotNull(message = "O conteúdo não pode estar em branco")
+
+    @NotBlank(message = "O conteúdo não pode estar em branco")
     private String content;
-    @NotNull(message = "A tarefa não pode ter um status nulo")
+
+    @NotNull(message = "A tarefa deve ter um status selecionado")
     private StatusTask statusTask;
 
     public String getTitle() {
@@ -51,5 +55,4 @@ public class TaskRequestDTO {
         taskRequestDTO.setStatusTask(task.getStatusTask());
         return taskRequestDTO;
     }
-
 }

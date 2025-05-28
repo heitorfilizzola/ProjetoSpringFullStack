@@ -10,9 +10,9 @@
 	</parent>
 	<groupId>com.example</groupId>
 	<artifactId>demo</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>demo</name>
-	<description>Demo project for Spring Boot</description>
+	<version>1.0.0</version>
+	<name>FullStack</name>
+	<description>FullStack project using Spring Boot</description>
 	<url/>
 	<licenses>
 		<license/>

@@ -21,6 +21,7 @@
             </div>
 
             <div id="nav_right_elements">
+                <a class="actions_Buttons" id="nav_AllButton">Todas</a>
                 <a class="actions_Buttons" id="nav_ToDoButton">Fazer</a>
                 <a class="actions_Buttons" id="nav_DoneButton">Feito</a>
                 <a class="actions_Buttons" id="nav_AddButton" th:href="@{/tasks/new}">+ Adicionar</a>
@@ -114,6 +115,96 @@
 </main>
 
 <footer th:replace="~{fragments :: footerDefault}"></footer>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const searchInput = document.getElementById('Left_Search');
+        const fazerButton = document.getElementById('nav_ToDoButton');
+        const feitoButton = document.getElementById('nav_DoneButton');
+        const allTaskRows = document.querySelectorAll('.rows_Tasks');
+        const allTaskLists = document.querySelectorAll('#Tasks_List');
+
+        let currentStatusFilter = 'all';
+
+        function getTaskStatus(taskRow) {
+            const statusBtn = taskRow.querySelector('.task_Status .actions_Buttons');
+            if (statusBtn) {
+                const statusText = statusBtn.textContent.trim().toLowerCase();
+                if (statusText === 'fazer') return 'fazer';
+                if (statusText === 'feito') return 'feito';
+            }
+            return 'unknown';
+        }
+
+        function applyFiltersAndSearch() {
+            const searchTerm = searchInput.value.toLowerCase();
+            let isFazerListVisible = false;
+            let isFeitoListVisible = false;
+
+            allTaskRows.forEach(function (taskRow) {
+                const titleElement = taskRow.querySelector('.row_Elements span:nth-of-type(2)');
+                const contentElement = taskRow.querySelector('.row_Elements span:nth-of-type(3)');
+                const taskStatus = getTaskStatus(taskRow);
+
+                const title = titleElement ? titleElement.textContent.toLowerCase() : '';
+                const content = contentElement ? contentElement.textContent.toLowerCase() : '';
+
+                const matchesSearch = title.includes(searchTerm) || content.includes(searchTerm);
+                const matchesStatus = (currentStatusFilter === 'all') || (taskStatus === currentStatusFilter);
+
+                const isVisible = matchesSearch && matchesStatus;
+                taskRow.style.display = isVisible ? 'block' : 'none';
+
+                if (isVisible) {
+                    if (taskStatus === 'fazer') isFazerListVisible = true;
+                    if (taskStatus === 'feito') isFeitoListVisible = true;
+                }
+            });
+
+            allTaskLists.forEach(function(list) {
+                const h3 = list.querySelector('h3.to_do');
+                if (h3) {
+                    const isThisFazerList = h3.textContent.trim().toLowerCase() === 'fazer';
+                    const isThisFeitoList = h3.textContent.trim().toLowerCase() === 'feito';
+
+                    if (isThisFazerList) {
+                        list.style.display = isFazerListVisible ? 'block' : 'none';
+                    } else if (isThisFeitoList) {
+                        list.style.display = isFeitoListVisible ? 'block' : 'none';
+                    }
+                }
+            });
+        }
+
+        searchInput.addEventListener('input', applyFiltersAndSearch);
+
+
+        fazerButton.addEventListener('click', function (e) {
+            e.preventDefault();
+            currentStatusFilter = 'fazer';
+            applyFiltersAndSearch();
+        });
+
+
+        feitoButton.addEventListener('click', function (e) {
+            e.preventDefault();
+            currentStatusFilter = 'feito';
+            applyFiltersAndSearch();
+        });
+
+
+        const allButton = document.getElementById('nav_AllButton');
+        if (allButton) {
+            allButton.addEventListener('click', function(e) {
+                e.preventDefault();
+                currentStatusFilter = 'all';
+                applyFiltersAndSearch();
+            });
+        }
+
+        applyFiltersAndSearch();
+    });
+</script>
 
 <script th:src="@{/js/Home_Page/script.js}"></script>
 </body>

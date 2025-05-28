@@ -1,0 +1,41 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    height: 100vh;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+    font-family: "Poppins", sans-serif;
+    font-style: normal;
+
+    & h1{
+        font-weight: 700;
+    }
+
+    & p{
+        font-weight: 400;
+        margin-bottom: 15px;
+    }
+
+    & hr{
+        width: 30%;
+    }
+
+    & a{
+        margin: 0;
+        padding: 0;
+        width: 100px;
+        height: 180px;
+        display: flex;
+        align-self: center;
+        align-content: center;
+        justify-content: center;
+    }
+
+}

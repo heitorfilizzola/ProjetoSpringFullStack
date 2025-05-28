@@ -16,7 +16,10 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.validation.BindingResult;
 import org.springframework.security.access.AccessDeniedException;
 import com.example.demo.dto.TaskEditRequestDTO;
-import com.example.demo.dto.TaskRequestDTO;
+import org.springframework.validation.BindingResult;
+import jakarta.validation.Valid;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import java.util.ArrayList;
 import java.util.Optional;
@@ -48,26 +51,43 @@ public class TaskController {
     }
 
     @GetMapping("/new")
-    public ModelAndView newTask(TaskRequestDTO taskRequestDTO) {
+    public ModelAndView newTask() {
         ModelAndView mv = new ModelAndView("newTask.html");
-        mv.addObject("task", new TaskRequestDTO());
+        mv.addObject("taskRequestDTO", new TaskRequestDTO());
         mv.addObject("listaStatusTask", StatusTask.values());
         return mv;
     }
 
     @PostMapping
-    public ModelAndView saveTask(TaskRequestDTO taskRequestDTO) {
-        Task task = taskRequestDTO.toTask();
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String username = auth.getName();
-        Optional<User> userOptional = userRepository.findByName(username);
+    public ModelAndView saveTask(@Valid @ModelAttribute("taskRequestDTO") TaskRequestDTO taskRequestDTO, BindingResult bindingResult, Authentication authentication) {
 
+        if (bindingResult.hasErrors()) {
+            ModelAndView mv = new ModelAndView("newTask.html");
+            mv.addObject("listaStatusTask", StatusTask.values());
+
+            List<String> errorMessages = bindingResult.getAllErrors().stream().map(err -> err.getDefaultMessage()).collect(Collectors.toList());
+            mv.addObject("errorMessagesForPopup", errorMessages);
+            mv.addObject("hasFormErrors", true);
+
+            return mv;
+        }
+
+        Optional<User> userOptional = userRepository.findByName(authentication.getName());
+
+        if (userOptional.isEmpty()) {
+            ModelAndView mv = new ModelAndView("newTask.html");
+            mv.addObject("taskRequestDTO", taskRequestDTO);
+            mv.addObject("listaStatusTask", StatusTask.values());
+            mv.addObject("generalErrorForPopup", "Erro: Usuário não autenticado ou não encontrado. Por favor, tente fazer login novamente.");
+            mv.addObject("hasFormErrors", true);
+            return mv;
+        }
         User user = userOptional.get();
 
+        Task task = taskRequestDTO.toTask();
         task.setUser(user);
 
-        user.getTasks().add(task);
-        userRepository.save(user);
+        taskRepository.save(task);
 
         return new ModelAndView("redirect:/tasks");
     }

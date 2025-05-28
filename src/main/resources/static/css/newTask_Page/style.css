@@ -1,7 +1,7 @@
-/* RESET E ESTILOS GLOBAIS */
 * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 body {
@@ -13,9 +13,9 @@ body {
     width: 100%;
     font-family: "Roboto", sans-serif;
     font-weight: 300;
+    background-color: #f4f7f6;
 }
 
-/* VARIÁVEIS DE CORES */
 :root {
     --primary-color: #5B6097;
     --primary-dark: #5649c0;
@@ -29,55 +29,99 @@ body {
     --border-radius: 12px;
 }
 
-/* LAYOUT PRINCIPAL */
 main {
     margin: 0;
-    padding: 0;
+    padding: 20px;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: center; /* Centraliza o .content-wrapper-for-newTask verticalmente se main tiver altura */
     flex-grow: 1;
-    min-height: auto;
+    min-height: auto; /* Permite que main cresça com o conteúdo */
 }
 
+/* Novo Wrapper para a seta e o container do formulário */
+.content-wrapper-for-newTask {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Alinha a seta e o container à esquerda dentro deste wrapper */
+    width: 100%;
+    max-width: 650px; /* Um pouco mais largo que o .container para a seta */
+}
+
+.back-arrow-custom {
+    display: inline-flex;
+    align-items: center;
+    color: var(--primary-color, #5B6097);
+    font-size: 0.95rem;
+    text-decoration: none;
+    padding: 8px 12px;
+    margin-bottom: 15px;
+    border-radius: var(--border-radius, 8px);
+    transition: background-color 0.2s ease, color 0.2s ease;
+    font-weight: 500;
+}
+
+.back-arrow-custom:hover {
+    background-color: #e9ecef;
+    color: var(--primary-dark, #5649c0);
+}
+
+.back-arrow-custom i.fas.fa-arrow-left {
+    margin-right: 8px;
+}
+
+/* Container do formulário (o card branco) */
 .container {
-    margin: 4rem auto;
-    padding: 2rem;
-    max-width: 600px;
+    margin: 0 auto 2rem auto; /* Centraliza horizontalmente dentro do .content-wrapper e adiciona margem inferior */
+    padding: 2.5rem;
+    width: 100%;
+    max-width: 600px; /* Largura máxima do card do formulário */
     background: white;
     border-radius: var(--border-radius);
     box-shadow: var(--box-shadow);
 }
 
-/* FORMULÁRIO DE TAREFA */
 form {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 1rem;
 }
 
 form h1 {
-    font-size: 2rem;
+    font-size: 1.8rem;
     font-weight: 600;
     color: var(--primary-color);
-    margin-bottom: 0.5rem;
+    margin-bottom: 1rem;
     text-align: center;
 }
 
-/* CAMPOS DE ENTRADA */
-.Task_Inputs {
-    padding: 1rem;
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.form-group label {
+    font-weight: 500;
+    color: var(--text-color);
+    font-size: 0.9rem;
+    margin-bottom: 0.25rem;
+}
+
+.Task_Inputs, .form-select {
+    padding: 0.9rem 1rem;
     border: 2px solid var(--medium-gray);
-    border-radius: var(--border-radius);
+    border-radius: calc(var(--border-radius) - 4px);
     font-size: 1rem;
     transition: all 0.3s ease;
     background-color: white;
+    width: 100%;
 }
 
-.Task_Inputs:focus {
+.Task_Inputs:focus, .form-select:focus {
     outline: none;
     border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(108, 92, 231, 0.2);
+    box-shadow: 0 0 0 3px rgba(91, 96, 151, 0.2);
 }
 
 .Task_Inputs::placeholder {
@@ -86,38 +130,26 @@ form h1 {
 }
 
 .form-select {
-    padding: 1rem;
-    border: 2px solid var(--medium-gray);
-    border-radius: var(--border-radius);
-    font-size: 1rem;
-    background-color: white;
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23636e72' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
     background-repeat: no-repeat;
     background-position: right 1rem center;
     background-size: 16px 12px;
     appearance: none;
-    transition: all 0.3s ease;
 }
 
-.form-select:focus {
-    outline: none;
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(108, 92, 231, 0.2);
-}
-
-/* BOTÃO DE ENVIO */
 button[type="submit"] {
-    padding: 1rem;
+    padding: 0.9rem 1rem;
     background-color: var(--primary-color);
     color: white;
     border: none;
-    border-radius: var(--border-radius);
+    border-radius: calc(var(--border-radius) - 4px);
     font-size: 1rem;
     font-weight: 500;
     cursor: pointer;
     transition: all 0.3s ease;
     text-transform: uppercase;
     letter-spacing: 0.5px;
+    margin-top: 0.5rem;
 }
 
 button[type="submit"]:hover {
@@ -129,34 +161,101 @@ button[type="submit"]:active {
     transform: translateY(0);
 }
 
-/* MENSAGENS DE STATUS */
-.error-message {
-    color: #721c24;
-    background-color: #f8d7da;
-    border: 1px solid #f5c6cb;
-    padding: 10px 15px;
-    border-radius: 4px;
-    margin: 0 auto 20px;
-    max-width: 400px;
-    text-align: center;
+.field-error-message {
+    color: var(--error-color, #d63031);
+    font-size: 0.8em;
+    display: block;
+    width: 100%;
+    text-align: left;
+    margin-top: 2px;
 }
 
-.success-message {
-    color: #155724;
-    background-color: #d4edda;
-    border: 1px solid #c3e6cb;
-    padding: 10px 15px;
-    border-radius: 4px;
-    margin: 0 auto 20px;
-    max-width: 400px;
-    text-align: center;
+.error-popup-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    padding: 15px;
+    animation: fadeIn 0.3s ease-in-out;
 }
 
-/* RODAPÉ */
+.error-popup {
+    background-color: white;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+    position: relative;
+}
+
+.error-popup-close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 1.75rem;
+    font-weight: bold;
+    line-height: 1;
+    cursor: pointer;
+    color: #888;
+    transition: color 0.2s;
+}
+.error-popup-close:hover {
+    color: #555;
+}
+
+.error-popup-title {
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: var(--error-color, #F06A6D);
+    font-size: 1.3rem;
+}
+
+.error-popup-message {
+    margin-bottom: 20px;
+    text-align: left;
+    padding-left: 10px; /* Removido, pois os <p> terão text-align ou padding individual */
+    max-height: 150px;
+    overflow-y: auto;
+}
+.error-popup-message p {
+    margin-bottom: 8px;
+    line-height: 1.4;
+    font-size: 0.95rem;
+    text-align: left; /* Garante que cada mensagem fique alinhada à esquerda */
+}
+.error-popup-message p:last-child {
+    margin-bottom: 0;
+}
+
+.error-popup-button {
+    background-color: var(--primary-color, #515151);
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    border-radius: var(--border-radius, 12px);
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s;
+    font-size: 0.95rem;
+}
+
+.error-popup-button:hover {
+    background-color: var(--primary-dark, #252525);
+}
+
 footer {
     background-color: #d9d9d9;
     width: 100%;
     padding: 10px 0;
+    margin-top: auto;
 }
 
 .Main_Footer {
@@ -215,14 +314,24 @@ footer {
     padding: 10px 0;
 }
 
-/* RESPONSIVIDADE */
 @media (max-width: 768px) {
     .container {
-        margin: 1rem;
+        margin: 1.5rem auto;
         padding: 1.5rem;
+    }
+    .content-wrapper-for-newTask { /* Ajuste para telas menores */
+        max-width: 100%;
+        padding: 0 10px; /* Adiciona um pouco de padding lateral no wrapper em telas menores */
+    }
+    .back-arrow-custom {
+        margin-left: 5px; /* Pequeno ajuste para não colar na borda */
     }
 
     form h1 {
         font-size: 1.5rem;
+    }
+    .Task_Inputs, .form-select, button[type="submit"] {
+        padding: 0.8rem;
+        font-size: 0.95rem;
     }
 }

@@ -67,16 +67,21 @@ form {
 
 /* CAMPO DE PESQUISA */
 .Search_Input {
+    all: unset;
     width: 100%;
     padding: 10px 15px 10px 30px;
     min-width: 170px;
     min-height: 6px;
     max-width: 350px;
     max-height: 50px;
-    border: 2px solid;
+    border: 2px solid grey;
     border-radius: 50px;
     font-size: 17px;
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
+}
+
+.Serch_Input:hover{
+    border: 2px solid grey;
 }
 
 #Left_Search {
@@ -107,6 +112,13 @@ form {
 .actions_Buttons:hover {
     transform: translateY(-2px);
     opacity: 1;
+}
+
+#nav_AllButton{
+    width: 80px;
+    height: 40px;
+    padding: 10px 20px;
+    background-color: dimgray;
 }
 
 #nav_ToDoButton {
@@ -270,3 +282,191 @@ form {
 #Tasks_List {
     margin-bottom: 60px;
 }
+
+@media (max-width: 768px) {
+    .container {
+        padding: 0 15px;
+    }
+
+    #nav_elements {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        padding: 15px 10px;
+    }
+
+    #nav_left_elements {
+        width: 100%;
+        max-width: 400px;
+        margin: 0 auto 10px auto;
+        justify-content: center;
+        height: auto;
+        padding: 0;
+    }
+    #nav_left_elements .Search_Input{
+        margin:0;
+    }
+
+    #nav_right_elements {
+        width: 100%;
+        max-width: none;
+        margin: 0;
+        padding: 0 5px;
+        justify-content: center;
+        gap: 8px;
+    }
+
+    .Search_Input {
+        width: 100%;
+        font-size: 15px;
+        padding: 8px 15px 8px 25px;
+        max-height: 45px;
+    }
+
+    .actions_Buttons {
+        padding: 8px 12px;
+        font-size: 13px;
+        height: auto;
+        min-height: 38px;
+        width: auto;
+        flex-grow: 1;
+        flex-basis: 80px;
+        text-align: center;
+        justify-content: center;
+    }
+
+    #nav_AllButton,
+    #nav_ToDoButton,
+    #nav_DoneButton {
+        min-width: 70px;
+    }
+    #nav_AddButton,
+    #nav_EnterpriseButton {
+        min-width: 100px;
+        flex-grow: 1.5;
+    }
+    #logout_button {
+        padding: 6px;
+    }
+    #logout_button img {
+        width: 24px;
+        height: 24px;
+    }
+
+    #main_container {
+        margin-top: 20px;
+    }
+
+    #row1_Task {
+        display: none !important;
+    }
+
+    .rows_Tasks {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+        padding: 12px 15px;
+        margin-top: 15px;
+    }
+
+    .row_Elements {
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+        gap: 10px;
+    }
+
+    .row_Elements > span {
+        flex-basis: auto;
+        width: 100%;
+        word-break: break-word;
+        line-height: 1.4;
+    }
+
+    .row_Elements > span:nth-of-type(2)::before {
+        content: "Título: ";
+        font-weight: bold;
+        margin-right: 5px;
+    }
+    .row_Elements > span:nth-of-type(3)::before {
+        content: "Conteúdo: ";
+        font-weight: bold;
+        margin-right: 5px;
+    }
+
+    .container_Circle {
+        padding-left: 5px;
+        align-self: flex-start;
+        margin-bottom: 8px;
+    }
+    .checkmark{
+        top: 0;
+    }
+
+    .task_Status {
+        width: 100%;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        gap: 10px;
+        padding-top: 10px;
+        margin-top: 10px;
+        border-top: 1px solid #efefef;
+    }
+
+    .task_Status .actions_Buttons {
+        padding: 8px 12px;
+        font-size: 13px;
+    }
+    .task_Status .actions_Buttons img {
+        width: 18px;
+        height: 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    #nav_left_elements {
+        margin-bottom: 20px;
+    }
+    #nav_right_elements {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+    }
+
+    #nav_right_elements .actions_Buttons,
+    #nav_right_elements #logout_button {
+        width: 50%;
+        margin-left: 0;
+        margin-right: 0;
+        justify-content: center;
+        font-size: 14px;
+        padding: 12px 10px;
+        min-height: 42px;
+    }
+
+    .to_do {
+        font-size: 18px;
+        padding: 10px 20px;
+        text-align: center;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .rows_Tasks {
+        padding: 10px;
+    }
+
+    .row_Elements > span:nth-of-type(2)::before,
+    .row_Elements > span:nth-of-type(3)::before {
+        display: block;
+        margin-bottom: 3px;
+    }
+    .row_Elements > span:nth-of-type(2),
+    .row_Elements > span:nth-of-type(3) {
+        padding-left: 0;
+    }
+}
+
+

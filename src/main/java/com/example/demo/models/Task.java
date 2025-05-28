@@ -10,6 +10,7 @@ public class Task {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idTask;
     private String title;
+    @Column(columnDefinition = "TEXT")
     private String content;
     private StatusTask statusTask;
 
