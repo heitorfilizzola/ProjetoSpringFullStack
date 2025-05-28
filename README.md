@@ -36,13 +36,6 @@ Certifique-se de ter instalado:
 
 ---
 
-## ⚙️ Configuração do Banco de Dados
-
-1. No MySQL (local ou Neon), execute:
-
-sql
-``CREATE SCHEMA `projeto`;``
-
 ## 🔒 Segurança
 - **Autenticação baseada em sessão e formulário com token CSRF**
 
@@ -51,6 +44,16 @@ sql
 - **Rotas protegidas com Spring Security**
 
 - **Configuração de CORS**
+
+---
+
+## ⚙️ Configuração do Banco de Dados
+
+No MySQL (local ou Neon), execute:
+
+sql
+
+``CREATE SCHEMA `projeto`;``
 
 ## 🖥️ Como executar o projeto
 
