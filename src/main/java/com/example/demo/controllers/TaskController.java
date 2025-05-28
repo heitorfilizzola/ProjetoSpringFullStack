@@ -99,7 +99,7 @@ public class TaskController {
 
         checkTaskOwnership(task);
 
-        ModelAndView mv = new ModelAndView("/Edit_Page/index");
+        ModelAndView mv = new ModelAndView("Edit_Page/index");
         mv.addObject("taskEditRequestDTO", TaskEditRequestDTO.fromTask(task));
         mv.addObject("listaStatusTask", StatusTask.values());
         return mv;
