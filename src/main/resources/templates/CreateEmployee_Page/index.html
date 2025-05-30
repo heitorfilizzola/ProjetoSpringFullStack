@@ -1,33 +1,60 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
 <html lang="pt" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="~{fragments :: headDefault('Edit Page')}"></head>
+<head th:replace="~{fragments :: headDefault(${pageTitle ?: 'Adicionar Funcionário'})}"></head>
 
 <link rel="stylesheet" th:href="@{/css/CreateEmployee_Page/style.css}"/>
+<style>
+    /* Estilos rápidos para mensagens de erro no formulário de adicionar empregado */
+    .field-error { color: red; font-size: 0.9em; margin-top: -10px; margin-bottom:10px; display: block; }
+    .global-message { text-align: center; margin-bottom: 15px; }
+    .global-message.success { color: green; }
+    .global-message.error { color: red; }
+</style>
 
 <body>
 <header th:replace="~{fragments :: header1}"></header>
 <main>
-    <div class="emp_area">
+    <div th:if="${successMessage}" class="global-message success" th:text="${successMessage}"></div>
+    <div th:if="${errorMessage}" class="global-message error" th:text="${errorMessage}"></div>
+
+    <form th:action="@{${formAction}}" method="POST" th:object="${createEmployeeDTO}" class="emp_area">
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+
+        <h2 style="text-align:center; margin-bottom:20px;" th:text="${pageTitle ?: 'Adicionar Funcionário'}"></h2>
+        <p th:if="${enterpriseName}" style="text-align:center; margin-bottom:20px;">
+            Adicionando funcionário para a empresa: <strong th:text="${enterpriseName}"></strong>
+        </p>
+
         <div class="add_emp">
             <div class="nome_emp">
-                <input type="text" placeholder="Nome do empregado">
+                <input type="text" th:field="*{username}" placeholder="Nome do empregado" required/>
+                <span th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="field-error"></span>
             </div>
             <div>
-                <input type="email" placeholder="Email do empregado">
+                <input type="email" th:field="*{email}" placeholder="Email do empregado" required/>
+                <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="field-error"></span>
             </div>
         </div>
         <div class="add_emp">
             <div>
-                <input type="password" placeholder="Senha do empregado">
+                <input type="password" th:field="*{password}" placeholder="Senha do empregado" required/>
+                <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="field-error"></span>
             </div>
             <div>
-                <input type="text" placeholder="Cargo do empregado">
+                <select th:field="*{rolesUser}" required class="form-select" style="width:100%; padding:8px; border:1px solid #ccc; border-radius:4px;">
+                    <option value="">Selecione o Cargo</option>
+                    <option th:each="role : ${allRoles}"
+                            th:value="${role}"
+                            th:text="${role.toString().substring(0,1).toUpperCase() + role.toString().substring(1)}">
+                    </option>
+                </select>
+                <span th:if="${#fields.hasErrors('rolesUser')}" th:errors="*{rolesUser}" class="field-error"></span>
             </div>
         </div>
         <div class="cad_area">
-            <button class="cad_button">Cadastrar</button>
+            <button type="submit" class="cad_button">Cadastrar Funcionário</button>
         </div>
-    </div>
+    </form>
 </main>
 <footer th:replace="~{fragments :: footerDefault}"></footer>
 </body>

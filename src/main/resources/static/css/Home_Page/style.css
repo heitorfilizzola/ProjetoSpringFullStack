@@ -142,6 +142,13 @@ form {
     background-color: #5B6097;
 }
 
+#nav_EnterpriseButton {
+    width: 130px;
+    height: 50px;
+    padding: 10px 20px;
+    background-color: #486623;
+}
+
 /* CABEÇALHO DAS TAREFAS */
 .to_do {
     display: inline-block;

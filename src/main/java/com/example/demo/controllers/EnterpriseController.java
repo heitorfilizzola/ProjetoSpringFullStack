@@ -122,7 +122,7 @@ public class EnterpriseController {
             return new ModelAndView("redirect:/minha-empresa");
         }
 
-        List<User> users = userRepository.findByEnterpriseId(enterprise.getId());
+        List<User> users = (List<User>) userRepository.findByEnterpriseId(enterprise.getId());
         users.forEach(u -> {
             u.setEnterprise(null);
             u.setEnterpriseAdmin(null);
