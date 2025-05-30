@@ -1,5 +1,6 @@
 package com.example.demo.repositories;
 
+import java.util.List;
 import java.util.Optional;
 import com.example.demo.models.User;
 import jakarta.validation.constraints.NotNull;
@@ -18,5 +19,5 @@ public interface UserRepository extends JpaRepository<User, String> {
 
     Optional<User> findByResetPasswordToken(String token);
 
-    Object findByEnterpriseId(String id);
+    List<User> findByEnterpriseId(String enterpriseId);
 }

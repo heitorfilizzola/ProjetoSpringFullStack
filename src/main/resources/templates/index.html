@@ -24,7 +24,7 @@
                 <a class="actions_Buttons" id="nav_ToDoButton">Fazer</a>
                 <a class="actions_Buttons" id="nav_DoneButton">Feito</a>
                 <a class="actions_Buttons" id="nav_AddButton" th:href="@{/tasks/new}">+ Adicionar</a>
-                <a class="actions_Buttons" id="nav_EnterpriseButton" th:href="@{/minha-empresa/criar}">Empresa</a>
+                <a class="actions_Buttons" id="nav_EnterpriseButton" th:href="@{/minha-empresa}">Empresa</a>
 
                 <form th:action="@{/logout}" method="POST">
                     <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
