@@ -18,8 +18,8 @@ public class Enterprise {
     @Column(unique = true)
     private String name;
 
-    @OneToMany(mappedBy = "enterprise", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<User> userList = new ArrayList<>( );
+    @OneToMany(mappedBy = "enterprise", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
+    private List<User> userList = new ArrayList<>();
 
     public Enterprise(String id, String name, List<User> userList) {
         this.id = id;
@@ -53,4 +53,4 @@ public class Enterprise {
     public void setUserList(List<User> userList) {
         this.userList = userList;
     }
-}
+} 
