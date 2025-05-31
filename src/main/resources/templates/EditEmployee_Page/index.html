@@ -41,8 +41,8 @@
             <div>
                 <label for="newPassword">Nova Senha (deixe em branco para não alterar):</label>
                 <input type="password" id="newPassword" th:field="*{newPassword}" placeholder="Nova senha (opcional)"/>
-                <span th:if="${#fields.hasErrors('newPassword')}" th:errors="*{newPassword}" class="field-error"></span>
-                <span class="form-note">Mínimo 6 caracteres se for alterar.</span>
+                <span th:if="${#fields.hasErrors('newPassword')}" th:errors="*{newPassword}" class="field-error" style="margin-top: 10px; margin-bottom: 3px;"></span>
+                <span class="form-note" style="margin-top: 10px;">Mínimo 6 caracteres se for alterar.</span>
             </div>
             <div>
                 <label for="rolesUser">Cargo:</label>

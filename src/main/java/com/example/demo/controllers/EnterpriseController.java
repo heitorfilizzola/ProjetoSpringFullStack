@@ -200,16 +200,21 @@ public class EnterpriseController {
                                                      Authentication authentication,
                                                      RedirectAttributes redirectAttributes) {
         Optional<User> adminOptional = getAuthenticatedUser(authentication);
-        if (adminOptional.isEmpty() || adminOptional.get().getEnterprise() == null) {
-            redirectAttributes.addFlashAttribute("errorMessage", "Operação não permitida.");
-            return new ModelAndView("redirect:/minha-empresa");
+        if (adminOptional.isEmpty()) {
+            redirectAttributes.addFlashAttribute("errorMessage", "Usuário não autenticado.");
+            return new ModelAndView("redirect:/login");
         }
 
         User admin = adminOptional.get();
         Enterprise enterprise = admin.getEnterprise();
 
+        if (enterprise == null || admin.getEnterpriseAdmin() == null || !admin.getEnterpriseAdmin().equals(enterprise.getId())) {
+            redirectAttributes.addFlashAttribute("errorMessage", "Você não tem permissão para remover funcionários.");
+            return new ModelAndView("redirect:/minha-empresa");
+        }
+
         if (employeeId.equals(admin.getId())) {
-            redirectAttributes.addFlashAttribute("errorMessage", "Você não pode se remover como administrador.");
+            redirectAttributes.addFlashAttribute("errorMessage", "Você não pode se remover como administrador da empresa por esta ação.");
             return new ModelAndView("redirect:/minha-empresa");
         }
 
@@ -226,25 +231,36 @@ public class EnterpriseController {
         }
 
         employee.setEnterprise(null);
+
+         if (employee.getRolesUser() == RolesUser.administrator) {
+             employee.setEnterpriseAdmin(null);
+         }
+        employee.setEnterpriseAdmin(null);
+
+
         userRepository.save(employee);
 
         redirectAttributes.addFlashAttribute("successMessage", "Funcionário removido com sucesso.");
         return new ModelAndView("redirect:/minha-empresa");
     }
 
-
     @GetMapping("/editar-funcionario/{employeeId}")
     public ModelAndView showEditEmployeeForm(@PathVariable String employeeId,
                                              Authentication authentication,
                                              RedirectAttributes redirectAttributes) {
         Optional<User> adminOptional = getAuthenticatedUser(authentication);
-        if (adminOptional.isEmpty() || adminOptional.get().getEnterprise() == null || adminOptional.get().getEnterpriseAdmin() == null) {
-            redirectAttributes.addFlashAttribute("errorMessage", "Permissão negada para acessar esta página.");
-            return new ModelAndView("redirect:/minha-empresa");
+        if (adminOptional.isEmpty()) {
+            redirectAttributes.addFlashAttribute("errorMessage", "Usuário não autenticado.");
+            return new ModelAndView("redirect:/login");
         }
-
         User admin = adminOptional.get();
         Enterprise enterprise = admin.getEnterprise();
+
+
+        if (enterprise == null || admin.getEnterpriseAdmin() == null || !admin.getEnterpriseAdmin().equals(enterprise.getId())) {
+            redirectAttributes.addFlashAttribute("errorMessage", "Você não tem permissão para editar funcionários.");
+            return new ModelAndView("redirect:/minha-empresa");
+        }
 
         Optional<User> employeeOptional = userRepository.findById(employeeId);
         if (employeeOptional.isEmpty()) {
@@ -287,13 +303,18 @@ public class EnterpriseController {
                                        RedirectAttributes redirectAttributes) {
 
         Optional<User> adminOptional = getAuthenticatedUser(authentication);
-        if (adminOptional.isEmpty() || adminOptional.get().getEnterprise() == null || adminOptional.get().getEnterpriseAdmin() == null) {
-            redirectAttributes.addFlashAttribute("errorMessage", "Operação não permitida.");
-            return new ModelAndView("redirect:/minha-empresa");
+        if (adminOptional.isEmpty()) {
+            redirectAttributes.addFlashAttribute("errorMessage", "Usuário não autenticado.");
+            return new ModelAndView("redirect:/login");
         }
 
         User admin = adminOptional.get();
         Enterprise currentEnterprise = admin.getEnterprise();
+
+        if (currentEnterprise == null || admin.getEnterpriseAdmin() == null || !admin.getEnterpriseAdmin().equals(currentEnterprise.getId())) {
+            redirectAttributes.addFlashAttribute("errorMessage", "Você não tem permissão para atualizar informações de funcionários.");
+            return new ModelAndView("redirect:/minha-empresa");
+        }
 
         Optional<User> employeeToUpdateOptional = userRepository.findById(editEmployeeRequestDTO.getId());
         if (employeeToUpdateOptional.isEmpty()) {

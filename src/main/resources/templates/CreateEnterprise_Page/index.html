@@ -35,7 +35,7 @@
                         <td th:text="${employee.name}">Nome Func.</td>
                         <td th:text="${employee.email}">Email Func.</td>
                         <td th:text="${employee.rolesUser.toString().substring(0,1).toUpperCase() + employee.rolesUser.toString().substring(1).toLowerCase()}">Cargo Func.</td>
-                        <td class="actions-col">
+                        <td class="actions-col" style="display: flex; justify-content: space-around; flex-direction: column;">
                             <a th:href="@{'/minha-empresa/editar-funcionario/' + ${employee.id}}"
                                class="btn-edit-employee"
                                style="text-decoration:none; padding: 6px 10px; background-color: #5bc0de; color:white; border-radius:4px; margin-right:5px; font-size:0.9em;">
@@ -46,7 +46,7 @@
                                   th:action="@{'/minha-empresa/remover-funcionario/' + ${employee.id}}"
                                   method="POST" style="display:inline;">
                                 <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
-                                <button type="submit" class="btn-remove-employee">Remover</button>
+                                <button type="submit" class="btn-remove-employee" style="margin-top: 10px;">Remover</button>
                             </form>
                             <span th:if="${employee.id == adminUserId}" style="font-size:0.8em; color: #777;">(Admin Logado)</span>
                         </td>
