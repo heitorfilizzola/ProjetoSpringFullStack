@@ -33,6 +33,8 @@ main {
   height: 64px;
   display: flex;
   flex-wrap: wrap;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 .Notes_Header {
